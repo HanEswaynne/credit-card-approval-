@@ -164,33 +164,38 @@ st.markdown("""
     }
 
     /* ========================================================
-       SELECTBOX (Industry) PURE BLACK & REMOVE WHITE ARROW BOX
+       SELECTBOX (Industry) PURE BLACK WITH BLACK ARROW BACKGROUND
        ======================================================== */
-    [data-testid="stSelectbox"] * {
-        background-color: transparent !important;
-        background: transparent !important;
-        color: #FFFFFF !important;
-    }
-
-    [data-testid="stSelectbox"] [data-baseweb="select"] > div {
+    div[data-testid="stSelectbox"],
+    div[data-testid="stSelectbox"] > div,
+    div[data-testid="stSelectbox"] div[data-baseweb="select"],
+    div[data-testid="stSelectbox"] div[data-baseweb="select"] > div,
+    div[data-testid="stSelectbox"] div[data-baseweb="select"] > div > div,
+    div[data-testid="stSelectbox"] div[data-baseweb="select"] [data-baseweb="icon"],
+    div[data-testid="stSelectbox"] div[data-baseweb="select"] [aria-hidden="true"],
+    div[data-testid="stSelectbox"] div[data-baseweb="select"] button,
+    div[data-testid="stSelectbox"] div[data-baseweb="select"] svg {
         background-color: #000000 !important;
         background: #000000 !important;
+        color: #FFFFFF !important;
+        border-color: #333333 !important;
+    }
+
+    div[data-testid="stSelectbox"] div[data-baseweb="select"] {
         border: 1px solid #333333 !important;
         border-radius: 8px !important;
     }
 
-    /* Dropdown Arrow Icon (Clean White SVG) */
-    [data-testid="stSelectbox"] svg {
-        fill: #FFFFFF !important;
-        stroke: #FFFFFF !important;
-        color: #FFFFFF !important;
-        background: transparent !important;
-        background-color: transparent !important;
+    /* Chevron Arrow SVG Icon */
+    div[data-testid="stSelectbox"] svg {
+        background-color: #000000 !important;
+        background: #000000 !important;
         opacity: 1 !important;
         visibility: visible !important;
     }
 
-    [data-testid="stSelectbox"] svg path {
+    div[data-testid="stSelectbox"] svg path,
+    div[data-testid="stSelectbox"] svg polygon {
         fill: #FFFFFF !important;
         stroke: #FFFFFF !important;
     }
