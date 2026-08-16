@@ -163,7 +163,9 @@ st.markdown("""
         stroke: #FFFFFF !important;
     }
 
-    /* Selectbox (Pure Black matching Currently Employed) */
+    /* ========================================================
+       SELECTBOX (Industry) COMPLETE PURE BLACK OVERRIDES
+       ======================================================== */
     .stSelectbox,
     .stSelectbox *,
     .stSelectbox div,
@@ -193,6 +195,7 @@ st.markdown("""
         border-radius: 8px !important;
     }
 
+    /* Selectbox Arrow SVG Icon & its Container Box */
     [data-testid="stSelectbox"] svg,
     [data-testid="stSelectbox"] svg path,
     [data-baseweb="select"] svg,
@@ -202,34 +205,53 @@ st.markdown("""
         color: #FFFFFF !important;
     }
 
-    /* Dropdown Popover & Options Menu */
-    div[data-baseweb="popover"],
-    div[data-baseweb="popover"] *,
-    div[data-baseweb="popover"] > div,
-    div[data-baseweb="popover"] ul,
-    ul[data-baseweb="menu"],
-    ul[data-baseweb="menu"] *,
-    ul[role="listbox"],
-    ul[role="listbox"] * {
+    [data-baseweb="select"] > div:last-child,
+    [data-baseweb="select"] div[aria-hidden="true"],
+    [data-baseweb="select"] span[aria-hidden="true"],
+    [data-baseweb="icon"],
+    [data-baseweb="icon"] * {
         background-color: #000000 !important;
         background: #000000 !important;
+        fill: #FFFFFF !important;
+    }
+
+    /* ========================================================
+       DROPDOWN POPOVER & OPTIONS LIST (Rendered at Root Portal)
+       ======================================================== */
+    [data-baseweb="popover"],
+    [data-baseweb="popover"] *,
+    [data-baseweb="popover"] > div,
+    [data-baseweb="layer"],
+    [data-baseweb="layer"] *,
+    [data-baseweb="menu"],
+    [data-baseweb="menu"] *,
+    ul[role="listbox"],
+    ul[role="listbox"] *,
+    li[role="option"],
+    li[role="option"] *,
+    div[role="listbox"],
+    div[role="listbox"] *,
+    ul[data-baseweb="menu"],
+    ul[data-baseweb="menu"] *,
+    li[data-baseweb="menu-item"],
+    li[data-baseweb="menu-item"] * {
+        background-color: #121212 !important;
+        background: #121212 !important;
+        color: #FFFFFF !important;
         border-color: #333333 !important;
     }
 
-    li[data-baseweb="menu-item"],
-    li[role="option"],
-    ul[role="listbox"] li,
-    ul[data-baseweb="menu"] li {
-        background-color: #000000 !important;
-        background: #000000 !important;
-        color: #FFFFFF !important;
-    }
-
-    li[data-baseweb="menu-item"]:hover,
+    /* Hover & Active item in Dropdown */
     li[role="option"]:hover,
-    li[aria-selected="true"] {
-        background-color: #1A1A1A !important;
-        background: #1A1A1A !important;
+    li[role="option"]:hover *,
+    li[aria-selected="true"],
+    li[aria-selected="true"] *,
+    [data-baseweb="menu"] li:hover,
+    [data-baseweb="menu"] li:hover *,
+    li[data-baseweb="menu-item"]:hover,
+    li[data-baseweb="menu-item"]:hover * {
+        background-color: #262626 !important;
+        background: #262626 !important;
         color: #FFFFFF !important;
     }
 
