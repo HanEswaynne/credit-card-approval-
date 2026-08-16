@@ -164,46 +164,35 @@ st.markdown("""
     }
 
     /* ========================================================
-       SELECTBOX (Industry) PURE BLACK & CRISP WHITE ARROW
+       SELECTBOX (Industry) PURE BLACK & REMOVE WHITE ARROW BOX
        ======================================================== */
-    .stSelectbox,
-    .stSelectbox div,
-    [data-testid="stSelectbox"],
-    [data-testid="stSelectbox"] > div,
-    [data-testid="stSelectbox"] div[data-baseweb="select"],
-    [data-testid="stSelectbox"] div[data-baseweb="select"] > div {
-        background-color: #000000 !important;
-        background: #000000 !important;
+    [data-testid="stSelectbox"] * {
+        background-color: transparent !important;
+        background: transparent !important;
         color: #FFFFFF !important;
-        border-color: #333333 !important;
     }
 
-    [data-testid="stSelectbox"] div[data-baseweb="select"] {
+    [data-testid="stSelectbox"] [data-baseweb="select"] > div {
+        background-color: #000000 !important;
+        background: #000000 !important;
         border: 1px solid #333333 !important;
         border-radius: 8px !important;
     }
 
-    /* Selectbox Dropdown Arrow Icon (Always Visible Crisp White) */
-    [data-testid="stSelectbox"] svg,
-    [data-testid="stSelectbox"] svg path,
-    [data-baseweb="select"] svg,
-    [data-baseweb="select"] svg path,
-    [data-testid="stSelectbox"] [data-baseweb="icon"] svg {
+    /* Dropdown Arrow Icon (Clean White SVG) */
+    [data-testid="stSelectbox"] svg {
         fill: #FFFFFF !important;
         stroke: #FFFFFF !important;
         color: #FFFFFF !important;
+        background: transparent !important;
+        background-color: transparent !important;
         opacity: 1 !important;
         visibility: visible !important;
-        display: block !important;
     }
 
-    [data-baseweb="select"] [data-baseweb="icon"],
-    [data-baseweb="select"] > div:last-child {
-        background-color: transparent !important;
-        background: transparent !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
+    [data-testid="stSelectbox"] svg path {
+        fill: #FFFFFF !important;
+        stroke: #FFFFFF !important;
     }
 
     /* ========================================================
