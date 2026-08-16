@@ -14,13 +14,13 @@ st.set_page_config(
 )
 
 # ---------------------------------------------------
-# Minimalist Black & White Element Theme CSS
+# Dark / Black Theme Complete CSS
 # ---------------------------------------------------
 st.markdown("""
 <style>
     /* Global Base */
     .stApp {
-        background-color: #000000;
+        background-color: #000000 !important;
         color: #FFFFFF !important;
     }
     
@@ -30,12 +30,22 @@ st.markdown("""
         max-width: 1100px;
     }
 
-    /* Force all text elements to pure white */
+    /* All Text / Headings / Labels */
     h1, h2, h3, h4, h5, h6, p, span, label, div, strong, em, li, [class*="st-"] {
         color: #FFFFFF !important;
     }
 
-    /* Streamlit widget labels */
+    /* Form Card Section Titles */
+    .card-title {
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: #FFFFFF !important;
+        margin-bottom: 12px;
+        border-bottom: 1px solid #262D3D;
+        padding-bottom: 6px;
+    }
+
+    /* Widget Labels */
     [data-testid="stWidgetLabel"] p,
     [data-testid="stWidgetLabel"] label,
     [data-testid="stWidgetLabel"] span {
@@ -44,12 +54,12 @@ st.markdown("""
         font-size: 0.92rem !important;
     }
 
-    /* Captions & Subtitles */
+    /* Subtitles and Captions */
     .stCaption, .stCaption p, .stCaption span {
-        color: #F3F4F6 !important;
+        color: #E2E8F0 !important;
     }
 
-    /* Metric Labels & Values */
+    /* Metric Cards */
     [data-testid="stMetricLabel"] p,
     [data-testid="stMetricLabel"] span,
     [data-testid="stMetricLabel"] div {
@@ -61,62 +71,141 @@ st.markdown("""
         font-weight: 800 !important;
     }
 
-    /* Tabs */
-    [data-baseweb="tab"] p,
-    [data-baseweb="tab"] span,
-    [data-baseweb="tab"] {
-        color: #FFFFFF !important;
-        font-weight: 600 !important;
-    }
-    [data-baseweb="tab"][aria-selected="true"] {
-        border-bottom-color: #3B82F6 !important;
+    /* Dividers */
+    hr {
+        border-color: #222834 !important;
     }
 
-    /* Radio button options & Selectbox labels */
-    [data-testid="stRadio"] label span,
-    [data-testid="stRadio"] div,
-    [data-baseweb="select"] div,
-    [data-baseweb="select"] span {
-        color: #FFFFFF !important;
-    }
-
-    /* Input Boxes Dark Styling with White Text */
-    input, select, textarea, [data-baseweb="input"], [data-baseweb="select"] {
-        background-color: #121212 !important;
-        color: #FFFFFF !important;
-        border-color: #333333 !important;
-    }
-
-    /* Sidebar Styling */
+    /* Sidebar */
     [data-testid="stSidebar"] {
-        background-color: #080808;
-        border-right: 1px solid #222222;
+        background-color: #05070A !important;
+        border-right: 1px solid #1A202C !important;
     }
     [data-testid="stSidebar"] * {
         color: #FFFFFF !important;
     }
 
-    /* Card Containers */
-    .dark-card {
-        background-color: #11141A;
-        border: 1px solid #222834;
-        border-radius: 12px;
-        padding: 20px;
-        margin-bottom: 16px;
-    }
-
-    .card-title {
-        font-size: 1.05rem;
-        font-weight: 700;
+    /* Standard / Secondary Buttons (e.g. Presets in Sidebar) */
+    .stButton > button,
+    button[kind="secondary"] {
+        background-color: #161B22 !important;
         color: #FFFFFF !important;
-        margin-bottom: 12px;
-        border-bottom: 1px solid #262D3D;
-        padding-bottom: 6px;
+        border: 1px solid #30363D !important;
+        border-radius: 8px !important;
+        font-weight: 600 !important;
+        padding: 8px 14px !important;
+        transition: all 0.2s ease !important;
     }
 
-    /* Result Cards */
+    .stButton > button:hover,
+    button[kind="secondary"]:hover {
+        background-color: #21262D !important;
+        border-color: #8B949E !important;
+        color: #FFFFFF !important;
+    }
+
+    /* Primary Submit Button */
+    div[data-testid="stFormSubmitButton"] > button {
+        background: linear-gradient(135deg, #1E40AF 0%, #2563EB 100%) !important;
+        color: #FFFFFF !important;
+        border: 1px solid #3B82F6 !important;
+        border-radius: 8px !important;
+        font-weight: 700 !important;
+        font-size: 1rem !important;
+        padding: 10px 16px !important;
+        transition: all 0.2s ease !important;
+    }
+
+    div[data-testid="stFormSubmitButton"] > button:hover {
+        background: linear-gradient(135deg, #1D4ED8 0%, #1E40AF 100%) !important;
+        border-color: #60A5FA !important;
+        box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35) !important;
+    }
+
+    /* Number Inputs & Stepper +/- Buttons */
+    [data-testid="stNumberInput"] div,
+    [data-testid="stNumberInput"] div[data-baseweb="input"],
+    [data-testid="stNumberInput"] input {
+        background-color: #0F1319 !important;
+        color: #FFFFFF !important;
+        border-color: #222834 !important;
+    }
+
+    [data-testid="stNumberInput"] button {
+        background-color: #1A202C !important;
+        color: #FFFFFF !important;
+        border: 1px solid #2D3748 !important;
+    }
+
+    [data-testid="stNumberInput"] button:hover {
+        background-color: #2D3748 !important;
+        color: #FFFFFF !important;
+    }
+
+    [data-testid="stNumberInput"] button svg {
+        fill: #FFFFFF !important;
+        stroke: #FFFFFF !important;
+    }
+
+    /* Selectbox / Dropdowns */
+    [data-baseweb="select"] {
+        background-color: #0F1319 !important;
+        border: 1px solid #222834 !important;
+        border-radius: 8px !important;
+    }
+
+    [data-baseweb="select"] * {
+        background-color: #0F1319 !important;
+        color: #FFFFFF !important;
+    }
+
+    [data-baseweb="select"] svg {
+        fill: #FFFFFF !important;
+    }
+
+    [data-baseweb="popover"], [data-baseweb="menu"] {
+        background-color: #0F1319 !important;
+        border: 1px solid #2D3748 !important;
+    }
+
+    [data-baseweb="menu"] li {
+        background-color: #0F1319 !important;
+        color: #FFFFFF !important;
+    }
+
+    [data-baseweb="menu"] li:hover {
+        background-color: #1E293B !important;
+    }
+
+    /* Radio Buttons */
+    [data-testid="stRadio"] [role="radiogroup"] label span {
+        color: #FFFFFF !important;
+    }
+
+    /* Tabs */
+    [data-baseweb="tab-list"] {
+        background-color: transparent !important;
+        border-bottom: 1px solid #222834 !important;
+    }
+
+    [data-baseweb="tab"] {
+        background-color: transparent !important;
+        color: #9CA3AF !important;
+        font-weight: 600 !important;
+    }
+
+    [data-baseweb="tab"][aria-selected="true"] {
+        color: #FFFFFF !important;
+        border-bottom: 2px solid #3B82F6 !important;
+    }
+
+    [data-baseweb="tab"]:hover {
+        color: #FFFFFF !important;
+    }
+
+    /* Result Banners */
     .result-approved {
-        background: #08291B;
+        background: #062E1E;
         border: 1.5px solid #10B981;
         border-radius: 12px;
         padding: 20px 24px;
@@ -124,7 +213,7 @@ st.markdown("""
     }
 
     .result-rejected {
-        background: #330F0F;
+        background: #360E0E;
         border: 1.5px solid #EF4444;
         border-radius: 12px;
         padding: 20px 24px;
@@ -155,7 +244,6 @@ st.markdown("""
         margin-bottom: 6px;
     }
 
-    /* Tags */
     .tag-pos {
         display: inline-block;
         background: rgba(16, 185, 129, 0.25);
@@ -217,19 +305,19 @@ def predict_approval(df_input):
 # Persona Presets
 # ---------------------------------------------------
 PRESETS = {
-    "🌟 Prime (Approved)": {
+    "Prime": {
         "age": 34.0, "debt": 1.2, "married": 1, "bank_customer": 1,
         "industry": "Financials", "years_employed": 5.5, "prior_default": 1,
         "employed": 1, "credit_score": 7, "drivers_license": 1,
         "citizen": "ByBirth", "income": 3500.0
     },
-    "⚠️ Borderline": {
+    "Borderline": {
         "age": 28.0, "debt": 4.5, "married": 1, "bank_customer": 1,
         "industry": "InformationTechnology", "years_employed": 2.0, "prior_default": 1,
         "employed": 0, "credit_score": 1, "drivers_license": 1,
         "citizen": "ByBirth", "income": 400.0
     },
-    "🚫 High Risk (Rejected)": {
+    "High Risk": {
         "age": 22.0, "debt": 6.8, "married": 0, "bank_customer": 0,
         "industry": "Materials", "years_employed": 0.5, "prior_default": 0,
         "employed": 0, "credit_score": 0, "drivers_license": 0,
@@ -237,7 +325,7 @@ PRESETS = {
     }
 }
 
-for k, v in PRESETS["🌟 Prime (Approved)"].items():
+for k, v in PRESETS["Prime"].items():
     if f"val_{k}" not in st.session_state:
         st.session_state[f"val_{k}"] = v
 
@@ -257,16 +345,16 @@ with st.sidebar:
     st.markdown("**Quick Preset Profiles**")
     c1, c2 = st.columns(2)
     with c1:
-        if st.button("🌟 Prime", use_container_width=True):
-            load_preset("🌟 Prime (Approved)")
+        if st.button("Prime Profile", use_container_width=True):
+            load_preset("Prime")
             st.rerun()
     with c2:
-        if st.button("🚫 High Risk", use_container_width=True):
-            load_preset("🚫 High Risk (Rejected)")
+        if st.button("High Risk", use_container_width=True):
+            load_preset("High Risk")
             st.rerun()
             
-    if st.button("⚠️ Borderline Profile", use_container_width=True):
-        load_preset("⚠️ Borderline")
+    if st.button("Borderline Profile", use_container_width=True):
+        load_preset("Borderline")
         st.rerun()
 
     st.divider()
@@ -425,8 +513,7 @@ with tab1:
 
         submitted = st.form_submit_button(
             "🔍 Predict Approval Decision",
-            use_container_width=True,
-            type="primary"
+            use_container_width=True
         )
 
     # ---------------------------------------------------
