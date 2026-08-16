@@ -366,6 +366,26 @@ table, thead, tbody, tr, th, td {
     margin: 3px 4px 3px 0;
     border: 1px solid #EF4444;
 }
+
+/* Force Industry selected text and arrow to white */
+div[data-testid="stSelectbox"] div[data-baseweb="select"] input,
+div[data-testid="stSelectbox"] div[data-baseweb="select"] input:focus,
+div[data-testid="stSelectbox"] div[data-baseweb="select"] span,
+div[data-testid="stSelectbox"] div[data-baseweb="select"] [data-baseweb="select-value"],
+div[data-testid="stSelectbox"] div[data-baseweb="select"] [data-baseweb="select-value"] * {
+    color: #FFFFFF !important;
+    -webkit-text-fill-color: #FFFFFF !important;
+    opacity: 1 !important;
+}
+
+div[data-testid="stSelectbox"] div[data-baseweb="select"] svg,
+div[data-testid="stSelectbox"] div[data-baseweb="select"] div[role="button"] svg,
+div[data-testid="stSelectbox"] div[data-baseweb="select"] svg * {
+    fill: #FFFFFF !important;
+    stroke: #FFFFFF !important;
+    color: #FFFFFF !important;
+    opacity: 1 !important;
+}
 </style>
 """, unsafe_allow_html=True)
 
