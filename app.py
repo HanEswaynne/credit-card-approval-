@@ -14,14 +14,14 @@ st.set_page_config(
 )
 
 # ---------------------------------------------------
-# Minimalist Black & Dark Theme CSS
+# Minimalist Black & White Element Theme CSS
 # ---------------------------------------------------
 st.markdown("""
 <style>
-    /* Dark Theme Base */
+    /* Global Base */
     .stApp {
-        background-color: #0B0E14;
-        color: #E6EDF3;
+        background-color: #000000;
+        color: #FFFFFF !important;
     }
     
     .block-container {
@@ -30,16 +30,76 @@ st.markdown("""
         max-width: 1100px;
     }
 
+    /* Force all text elements to pure white */
+    h1, h2, h3, h4, h5, h6, p, span, label, div, strong, em, li, [class*="st-"] {
+        color: #FFFFFF !important;
+    }
+
+    /* Streamlit widget labels */
+    [data-testid="stWidgetLabel"] p,
+    [data-testid="stWidgetLabel"] label,
+    [data-testid="stWidgetLabel"] span {
+        color: #FFFFFF !important;
+        font-weight: 600 !important;
+        font-size: 0.92rem !important;
+    }
+
+    /* Captions & Subtitles */
+    .stCaption, .stCaption p, .stCaption span {
+        color: #F3F4F6 !important;
+    }
+
+    /* Metric Labels & Values */
+    [data-testid="stMetricLabel"] p,
+    [data-testid="stMetricLabel"] span,
+    [data-testid="stMetricLabel"] div {
+        color: #FFFFFF !important;
+        font-weight: 600 !important;
+    }
+    [data-testid="stMetricValue"] div {
+        color: #FFFFFF !important;
+        font-weight: 800 !important;
+    }
+
+    /* Tabs */
+    [data-baseweb="tab"] p,
+    [data-baseweb="tab"] span,
+    [data-baseweb="tab"] {
+        color: #FFFFFF !important;
+        font-weight: 600 !important;
+    }
+    [data-baseweb="tab"][aria-selected="true"] {
+        border-bottom-color: #3B82F6 !important;
+    }
+
+    /* Radio button options & Selectbox labels */
+    [data-testid="stRadio"] label span,
+    [data-testid="stRadio"] div,
+    [data-baseweb="select"] div,
+    [data-baseweb="select"] span {
+        color: #FFFFFF !important;
+    }
+
+    /* Input Boxes Dark Styling with White Text */
+    input, select, textarea, [data-baseweb="input"], [data-baseweb="select"] {
+        background-color: #121212 !important;
+        color: #FFFFFF !important;
+        border-color: #333333 !important;
+    }
+
     /* Sidebar Styling */
     [data-testid="stSidebar"] {
-        background-color: #080A0F;
-        border-right: 1px solid #1E2633;
+        background-color: #080808;
+        border-right: 1px solid #222222;
+    }
+    [data-testid="stSidebar"] * {
+        color: #FFFFFF !important;
     }
 
     /* Card Containers */
     .dark-card {
-        background-color: #121721;
-        border: 1px solid #1E2633;
+        background-color: #11141A;
+        border: 1px solid #222834;
         border-radius: 12px;
         padding: 20px;
         margin-bottom: 16px;
@@ -48,22 +108,24 @@ st.markdown("""
     .card-title {
         font-size: 1.05rem;
         font-weight: 700;
-        color: #60A5FA;
+        color: #FFFFFF !important;
         margin-bottom: 12px;
+        border-bottom: 1px solid #262D3D;
+        padding-bottom: 6px;
     }
 
     /* Result Cards */
     .result-approved {
-        background: rgba(16, 185, 129, 0.12);
-        border: 1px solid #10B981;
+        background: #08291B;
+        border: 1.5px solid #10B981;
         border-radius: 12px;
         padding: 20px 24px;
         margin-top: 16px;
     }
 
     .result-rejected {
-        background: rgba(239, 68, 68, 0.12);
-        border: 1px solid #EF4444;
+        background: #330F0F;
+        border: 1.5px solid #EF4444;
         border-radius: 12px;
         padding: 20px 24px;
         margin-top: 16px;
@@ -72,8 +134,8 @@ st.markdown("""
     .badge-approved {
         display: inline-block;
         background: #10B981;
-        color: #000000;
-        font-weight: 700;
+        color: #000000 !important;
+        font-weight: 800;
         font-size: 0.75rem;
         padding: 3px 10px;
         border-radius: 6px;
@@ -84,8 +146,8 @@ st.markdown("""
     .badge-rejected {
         display: inline-block;
         background: #EF4444;
-        color: #FFFFFF;
-        font-weight: 700;
+        color: #FFFFFF !important;
+        font-weight: 800;
         font-size: 0.75rem;
         padding: 3px 10px;
         border-radius: 6px;
@@ -96,22 +158,26 @@ st.markdown("""
     /* Tags */
     .tag-pos {
         display: inline-block;
-        background: rgba(16, 185, 129, 0.2);
-        color: #34D399;
-        font-size: 0.82rem;
-        padding: 3px 8px;
+        background: rgba(16, 185, 129, 0.25);
+        color: #FFFFFF !important;
+        font-size: 0.85rem;
+        font-weight: 600;
+        padding: 4px 10px;
         border-radius: 6px;
-        margin: 2px 4px 2px 0;
+        margin: 3px 4px 3px 0;
+        border: 1px solid #10B981;
     }
 
     .tag-neg {
         display: inline-block;
-        background: rgba(239, 68, 68, 0.2);
-        color: #F87171;
-        font-size: 0.82rem;
-        padding: 3px 8px;
+        background: rgba(239, 68, 68, 0.25);
+        color: #FFFFFF !important;
+        font-size: 0.85rem;
+        font-weight: 600;
+        padding: 4px 10px;
         border-radius: 6px;
-        margin: 2px 4px 2px 0;
+        margin: 3px 4px 3px 0;
+        border: 1px solid #EF4444;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -390,8 +456,8 @@ with tab1:
             st.markdown(f"""
             <div class="result-approved">
                 <span class="badge-approved">APPROVED</span>
-                <h2 style="margin: 4px 0; color: #34D399;">Likely to be Approved</h2>
-                <p style="margin: 0; color: #A7F3D0; font-size: 0.95rem;">
+                <h2 style="margin: 4px 0; color: #FFFFFF !important;">Likely to be Approved</h2>
+                <p style="margin: 0; color: #FFFFFF !important; font-size: 0.95rem;">
                     Approval confidence: <strong>{prob:.1%}</strong>
                 </p>
             </div>
@@ -400,8 +466,8 @@ with tab1:
             st.markdown(f"""
             <div class="result-rejected">
                 <span class="badge-rejected">REJECTED</span>
-                <h2 style="margin: 4px 0; color: #F87171;">Likely to be Rejected</h2>
-                <p style="margin: 0; color: #FECACA; font-size: 0.95rem;">
+                <h2 style="margin: 4px 0; color: #FFFFFF !important;">Likely to be Rejected</h2>
+                <p style="margin: 0; color: #FFFFFF !important; font-size: 0.95rem;">
                     Approval confidence: <strong>{prob:.1%}</strong>
                 </p>
             </div>
