@@ -18,9 +18,18 @@ st.set_page_config(
 # ---------------------------------------------------
 st.markdown("""
 <style>
+    /* CSS Variables Override (Forces Streamlit & BaseWeb to Dark Mode) */
+    :root, .stApp {
+        --primary-color: #2563EB !important;
+        --background-color: #000000 !important;
+        --secondary-background-color: #0F1319 !important;
+        --text-color: #FFFFFF !important;
+    }
+
     /* Global Background & Base Text */
-    .stApp, [data-testid="stAppViewContainer"], [data-testid="stHeader"] {
+    html, body, .stApp, [data-testid="stAppViewContainer"], [data-testid="stHeader"] {
         background-color: #000000 !important;
+        background: #000000 !important;
         color: #FFFFFF !important;
     }
     
@@ -128,6 +137,7 @@ st.markdown("""
     [data-testid="stNumberInput"] div[data-baseweb="input"],
     [data-testid="stNumberInput"] input {
         background-color: #0F1319 !important;
+        background: #0F1319 !important;
         color: #FFFFFF !important;
         border-color: #222834 !important;
     }
@@ -149,27 +159,42 @@ st.markdown("""
     }
 
     /* ========================================================
-       SELECTBOX (Industry, Citizenship, etc.) COMPLETE OVERRIDES
+       SELECTBOX (Industry, Citizenship, etc.) BULLETPROOF DARK
        ======================================================== */
-    div[data-testid="stSelectbox"],
-    div[data-testid="stSelectbox"] > div,
-    div[data-testid="stSelectbox"] div[data-baseweb="select"],
-    div[data-testid="stSelectbox"] div[data-baseweb="select"] > div,
-    div[data-testid="stSelectbox"] div[data-baseweb="select"] > div > div,
-    div[data-testid="stSelectbox"] div[data-baseweb="select"] * {
+    .stSelectbox,
+    .stSelectbox *,
+    .stSelectbox div,
+    .stSelectbox span,
+    .stSelectbox [data-baseweb="select"],
+    .stSelectbox [data-baseweb="select"] > div,
+    .stSelectbox [data-baseweb="select"] > div > div,
+    [data-testid="stSelectbox"],
+    [data-testid="stSelectbox"] *,
+    [data-testid="stSelectbox"] > div,
+    [data-testid="stSelectbox"] div[data-baseweb="select"],
+    [data-testid="stSelectbox"] div[data-baseweb="select"] > div,
+    [data-testid="stSelectbox"] div[data-baseweb="select"] > div > div,
+    [data-testid="stSelectbox"] div[data-baseweb="select"] [role="combobox"],
+    div[data-baseweb="select"],
+    div[data-baseweb="select"] *,
+    div[data-baseweb="select"] > div,
+    div[data-baseweb="select"] > div > div {
         background-color: #0F1319 !important;
         background: #0F1319 !important;
         color: #FFFFFF !important;
         border-color: #222834 !important;
     }
 
-    div[data-testid="stSelectbox"] div[data-baseweb="select"] {
+    [data-testid="stSelectbox"] div[data-baseweb="select"] {
         border: 1px solid #222834 !important;
         border-radius: 8px !important;
     }
 
-    div[data-testid="stSelectbox"] svg,
-    div[data-testid="stSelectbox"] svg path {
+    /* Selectbox Arrow SVG Icon */
+    [data-testid="stSelectbox"] svg,
+    [data-testid="stSelectbox"] svg path,
+    [data-baseweb="select"] svg,
+    [data-baseweb="select"] svg path {
         fill: #FFFFFF !important;
         stroke: #FFFFFF !important;
         color: #FFFFFF !important;
@@ -177,13 +202,16 @@ st.markdown("""
 
     /* Dropdown Popover & Options Menu */
     div[data-baseweb="popover"],
+    div[data-baseweb="popover"] *,
     div[data-baseweb="popover"] > div,
     div[data-baseweb="popover"] ul,
     ul[data-baseweb="menu"],
-    ul[role="listbox"] {
+    ul[data-baseweb="menu"] *,
+    ul[role="listbox"],
+    ul[role="listbox"] * {
         background-color: #0F1319 !important;
         background: #0F1319 !important;
-        border: 1px solid #222834 !important;
+        border-color: #222834 !important;
     }
 
     li[data-baseweb="menu-item"],
@@ -201,13 +229,6 @@ st.markdown("""
         background-color: #1E2633 !important;
         background: #1E2633 !important;
         color: #3B82F6 !important;
-    }
-
-    li[data-baseweb="menu-item"] *,
-    li[role="option"] * {
-        background-color: transparent !important;
-        background: transparent !important;
-        color: #FFFFFF !important;
     }
 
     /* Radio Buttons */
