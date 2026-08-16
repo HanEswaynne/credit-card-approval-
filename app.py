@@ -20,7 +20,6 @@ st.markdown("""
 }
 
 html, body, .stApp, [data-testid="stAppViewContainer"], [data-testid="stHeader"] {
-    background-color: #000000 !important;
     background: #000000 !important;
     color: #FFFFFF !important;
 }
@@ -57,19 +56,14 @@ h1, h2, h3, h4, h5, h6, p, label, strong, em, li {
 [data-testid="stCaptionContainer"] *,
 small {
     color: #B0B0B0 !important;
-    background-color: transparent !important;
+    background: transparent !important;
 }
 
 [data-testid="stMetricLabel"] p,
 [data-testid="stMetricLabel"] span,
-[data-testid="stMetricLabel"] div {
-    color: #FFFFFF !important;
-    font-weight: 600 !important;
-}
-
+[data-testid="stMetricLabel"] div,
 [data-testid="stMetricValue"] div {
     color: #FFFFFF !important;
-    font-weight: 800 !important;
 }
 
 hr {
@@ -78,7 +72,7 @@ hr {
 
 [data-testid="stSidebar"],
 [data-testid="stSidebar"] > div:first-child {
-    background-color: #000000 !important;
+    background: #000000 !important;
     border-right: 1px solid #1E1E1E !important;
 }
 
@@ -86,78 +80,56 @@ hr {
     color: #FFFFFF !important;
 }
 
-[data-testid="stToolbar"],
-[data-testid="stToolbar"] *,
-[data-testid="stDecoration"],
-[data-testid="stStatusWidget"],
-[data-testid="stBottom"],
-[data-testid="stMain"],
-[data-testid="stMainBlockContainer"],
-[data-testid="stVerticalBlock"],
-[data-testid="stHorizontalBlock"] {
-    background-color: #000000 !important;
-    color: #FFFFFF !important;
-}
-
 .stButton > button,
 button[kind="secondary"] {
-    background-color: #000000 !important;
+    background: #000000 !important;
     color: #FFFFFF !important;
     border: 1px solid #333333 !important;
     border-radius: 8px !important;
     font-weight: 600 !important;
-    padding: 8px 14px !important;
-    transition: all 0.2s ease !important;
 }
 
 .stButton > button:hover,
 button[kind="secondary"]:hover {
-    background-color: #1A1A1A !important;
+    background: #1A1A1A !important;
     border-color: #555555 !important;
-    color: #FFFFFF !important;
 }
 
 div[data-testid="stFormSubmitButton"] > button {
-    background-color: #111111 !important;
+    background: #111111 !important;
     color: #FFFFFF !important;
     border: 1px solid #444444 !important;
     border-radius: 8px !important;
     font-weight: 700 !important;
     font-size: 1rem !important;
     padding: 10px 16px !important;
-    transition: all 0.2s ease !important;
 }
 
 div[data-testid="stFormSubmitButton"] > button:hover {
-    background-color: #222222 !important;
+    background: #222222 !important;
     border-color: #666666 !important;
 }
 
 [data-testid="stForm"],
 [data-testid="stForm"] > div {
-    background-color: #000000 !important;
+    background: #000000 !important;
     border-color: #222222 !important;
-    color: #FFFFFF !important;
 }
 
 [data-testid="stNumberInput"],
 [data-testid="stNumberInput"] > div,
 [data-testid="stNumberInput"] div[data-baseweb="input"],
 [data-testid="stNumberInput"] input {
-    background-color: #000000 !important;
+    background: #000000 !important;
     color: #FFFFFF !important;
     border-color: #333333 !important;
     -webkit-text-fill-color: #FFFFFF !important;
 }
 
 [data-testid="stNumberInput"] button {
-    background-color: #000000 !important;
+    background: #000000 !important;
     color: #FFFFFF !important;
     border: 1px solid #333333 !important;
-}
-
-[data-testid="stNumberInput"] button:hover {
-    background-color: #1A1A1A !important;
 }
 
 [data-testid="stNumberInput"] button svg {
@@ -171,12 +143,12 @@ div[data-testid="stFormSubmitButton"] > button:hover {
 [data-testid="stRadio"] label,
 [data-testid="stRadio"] label > div,
 [data-testid="stRadio"] label > div > div {
-    background-color: #000000 !important;
+    background: #000000 !important;
     color: #FFFFFF !important;
 }
 
 [data-testid="stRadio"] [data-baseweb="radio"] > div:first-child {
-    background-color: #000000 !important;
+    background: #000000 !important;
     border-color: #777777 !important;
 }
 
@@ -184,89 +156,13 @@ div[data-testid="stFormSubmitButton"] > button:hover {
     fill: #FFFFFF !important;
 }
 
-div[data-testid="stSelectbox"],
-div[data-testid="stSelectbox"] > div,
-div[data-testid="stSelectbox"] div[data-baseweb="select"],
-div[data-testid="stSelectbox"] div[data-baseweb="select"] > div,
-div[data-testid="stSelectbox"] div[data-baseweb="select"] > div > div,
-div[data-testid="stSelectbox"] div[data-baseweb="select"] [data-baseweb="icon"],
-div[data-testid="stSelectbox"] div[data-baseweb="select"] [aria-hidden="true"],
-div[data-testid="stSelectbox"] div[data-baseweb="select"] button,
-div[data-testid="stSelectbox"] div[data-baseweb="select"] svg {
-    background-color: #000000 !important;
-    color: #FFFFFF !important;
-    border-color: #333333 !important;
-}
-
-div[data-testid="stSelectbox"] div[data-baseweb="select"] {
-    border: 1px solid #333333 !important;
-    border-radius: 8px !important;
-}
-
-[data-testid="stSelectbox"] [data-baseweb="select"] input {
-    background-color: #000000 !important;
-    color: #FFFFFF !important;
-    -webkit-text-fill-color: #FFFFFF !important;
-}
-
-div[data-testid="stSelectbox"] svg path,
-div[data-testid="stSelectbox"] svg polygon {
-    fill: #FFFFFF !important;
-    stroke: #FFFFFF !important;
-}
-
-[data-baseweb="popover"],
-[data-baseweb="popover"] *,
-[data-baseweb="layer"],
-[data-baseweb="layer"] *,
-[data-baseweb="menu"],
-[data-baseweb="menu"] *,
-ul[role="listbox"],
-ul[role="listbox"] *,
-li[role="option"],
-li[role="option"] *,
-div[role="listbox"],
-div[role="listbox"] *,
-ul[data-baseweb="menu"],
-ul[data-baseweb="menu"] *,
-li[data-baseweb="menu-item"],
-li[data-baseweb="menu-item"] * {
-    background-color: #121212 !important;
-    color: #FFFFFF !important;
-    border-color: #333333 !important;
-}
-
-[data-baseweb="popover"] input,
-[data-baseweb="popover"] input:focus,
-[data-baseweb="menu"] input,
-[data-baseweb="menu"] input:focus {
-    background-color: #121212 !important;
-    color: #FFFFFF !important;
-    -webkit-text-fill-color: #FFFFFF !important;
-    border-color: #444444 !important;
-}
-
-li[role="option"]:hover,
-li[role="option"]:hover *,
-li[aria-selected="true"],
-li[aria-selected="true"] *,
-[role="option"][aria-selected="true"],
-[role="option"][aria-selected="true"] *,
-[data-baseweb="menu"] li:hover,
-[data-baseweb="menu"] li:hover *,
-li[data-baseweb="menu-item"]:hover,
-li[data-baseweb="menu-item"]:hover * {
-    background-color: #262626 !important;
-    color: #FFFFFF !important;
-}
-
 [data-baseweb="tab-list"] {
-    background-color: transparent !important;
+    background: transparent !important;
     border-bottom: 1px solid #222222 !important;
 }
 
 [data-baseweb="tab"] {
-    background-color: transparent !important;
+    background: transparent !important;
     color: #888888 !important;
     font-weight: 600 !important;
 }
@@ -276,15 +172,11 @@ li[data-baseweb="menu-item"]:hover * {
     border-bottom: 2px solid #FFFFFF !important;
 }
 
-[data-baseweb="tab"]:hover {
-    color: #FFFFFF !important;
-}
-
 [data-testid="stExpander"],
 [data-testid="stExpander"] details,
 [data-testid="stExpander"] summary,
 [data-testid="stExpander"] div {
-    background-color: #000000 !important;
+    background: #000000 !important;
     color: #FFFFFF !important;
     border-color: #333333 !important;
 }
@@ -294,49 +186,19 @@ li[data-baseweb="menu-item"]:hover * {
     color: #FFFFFF !important;
 }
 
-[data-testid="stAlert"],
-[data-testid="stAlert"] > div {
-    background-color: #121212 !important;
-    color: #FFFFFF !important;
-    border-color: #555555 !important;
-}
-
 [data-testid="stProgress"],
 [data-testid="stProgress"] > div {
-    background-color: #222222 !important;
+    background: #222222 !important;
 }
 
 [data-testid="stProgress"] > div > div > div {
-    background-color: #FFFFFF !important;
-}
-
-[data-testid="stDataFrame"],
-[data-testid="stDataFrame"] > div,
-[data-testid="stDataFrame"] iframe {
-    background-color: #000000 !important;
-}
-
-[data-testid="stDataFrame"] {
-    border: 1px solid #333333 !important;
-    border-radius: 8px !important;
-    overflow: hidden !important;
+    background: #FFFFFF !important;
 }
 
 table, thead, tbody, tr, th, td {
-    background-color: #000000 !important;
+    background: #000000 !important;
     color: #FFFFFF !important;
     border-color: #333333 !important;
-}
-
-input:-webkit-autofill,
-input:-webkit-autofill:hover,
-input:-webkit-autofill:focus,
-textarea:-webkit-autofill,
-select:-webkit-autofill {
-    -webkit-text-fill-color: #FFFFFF !important;
-    -webkit-box-shadow: 0 0 0px 1000px #000000 inset !important;
-    box-shadow: 0 0 0px 1000px #000000 inset !important;
-    transition: background-color 5000s ease-in-out 0s;
 }
 
 .result-approved {
@@ -452,7 +314,6 @@ PRESETS = {
     }
 }
 
-
 for key, value in PRESETS["Prime"].items():
     if f"val_{key}" not in st.session_state:
         st.session_state[f"val_{key}"] = value
@@ -552,9 +413,11 @@ with tab1:
                 "ConsumerStaples", "Research"
             ]
             saved_industry = st.session_state.get("val_industry", "Financials")
-            industry = st.selectbox(
-                "Industry", options=industry_options,
-                index=industry_options.index(saved_industry) if saved_industry in industry_options else 0
+            industry = st.radio(
+                "Industry",
+                options=industry_options,
+                index=industry_options.index(saved_industry) if saved_industry in industry_options else 0,
+                horizontal=False
             )
 
             employed = st.radio(
