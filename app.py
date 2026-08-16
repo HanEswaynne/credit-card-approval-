@@ -3,6 +3,9 @@ import pandas as pd
 import numpy as np
 import joblib
 
+# ---------------------------------------------------
+# Page setup
+# ---------------------------------------------------
 st.set_page_config(
     page_title="Credit Card Approval Predictor",
     page_icon="💳",
@@ -10,693 +13,349 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
+# Clean CSS enhancement (Original Light Version)
 st.markdown("""
 <style>
-:root, .stApp {
-    --primary-color: #FFFFFF !important;
-    --background-color: #000000 !important;
-    --secondary-background-color: #000000 !important;
-    --text-color: #FFFFFF !important;
-}
+    .block-container {
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+        max-width: 1200px;
+    }
 
-html, body, .stApp, [data-testid="stAppViewContainer"], [data-testid="stHeader"] {
-    background: #000000 !important;
-    color: #FFFFFF !important;
-}
+    .app-title {
+        font-size: 2.2rem;
+        font-weight: 700;
+        margin-bottom: 0.2rem;
+    }
 
-.block-container {
-    padding-top: 2rem;
-    padding-bottom: 3rem;
-    max-width: 1100px;
-}
+    .app-subtitle {
+        color: #6B7280;
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+    }
 
-h1, h2, h3, h4, h5, h6, p, label, strong, em, li {
-    color: #FFFFFF !important;
-}
-
-.card-title {
-    font-size: 1.05rem;
-    font-weight: 700;
-    color: #FFFFFF !important;
-    margin-bottom: 12px;
-    border-bottom: 1px solid #222222;
-    padding-bottom: 6px;
-}
-
-[data-testid="stWidgetLabel"] p,
-[data-testid="stWidgetLabel"] label,
-[data-testid="stWidgetLabel"] span {
-    color: #FFFFFF !important;
-    font-weight: 600 !important;
-    font-size: 0.92rem !important;
-}
-
-.stCaption, .stCaption p, .stCaption span,
-[data-testid="stCaptionContainer"],
-[data-testid="stCaptionContainer"] *,
-small {
-    color: #B0B0B0 !important;
-    background: transparent !important;
-}
-
-[data-testid="stMetricLabel"] p,
-[data-testid="stMetricLabel"] span,
-[data-testid="stMetricLabel"] div,
-[data-testid="stMetricValue"] div {
-    color: #FFFFFF !important;
-}
-
-hr {
-    border-color: #222222 !important;
-}
-
-[data-testid="stSidebar"],
-[data-testid="stSidebar"] > div:first-child {
-    background: #000000 !important;
-    border-right: 1px solid #1E1E1E !important;
-}
-
-[data-testid="stSidebar"] * {
-    color: #FFFFFF !important;
-}
-
-.stButton > button,
-button[kind="secondary"] {
-    background: #000000 !important;
-    color: #FFFFFF !important;
-    border: 1px solid #333333 !important;
-    border-radius: 8px !important;
-    font-weight: 600 !important;
-}
-
-.stButton > button:hover,
-button[kind="secondary"]:hover {
-    background: #1A1A1A !important;
-    border-color: #555555 !important;
-}
-
-div[data-testid="stFormSubmitButton"] > button {
-    background: #111111 !important;
-    color: #FFFFFF !important;
-    border: 1px solid #444444 !important;
-    border-radius: 8px !important;
-    font-weight: 700 !important;
-    font-size: 1rem !important;
-    padding: 10px 16px !important;
-}
-
-div[data-testid="stFormSubmitButton"] > button:hover {
-    background: #222222 !important;
-    border-color: #666666 !important;
-}
-
-[data-testid="stForm"],
-[data-testid="stForm"] > div {
-    background: #000000 !important;
-    border-color: #222222 !important;
-}
-
-[data-testid="stNumberInput"],
-[data-testid="stNumberInput"] > div,
-[data-testid="stNumberInput"] div[data-baseweb="input"],
-[data-testid="stNumberInput"] input {
-    background: #000000 !important;
-    color: #FFFFFF !important;
-    border-color: #333333 !important;
-    -webkit-text-fill-color: #FFFFFF !important;
-}
-
-[data-testid="stNumberInput"] button {
-    background: #000000 !important;
-    color: #FFFFFF !important;
-    border: 1px solid #333333 !important;
-}
-
-[data-testid="stNumberInput"] button svg {
-    fill: #FFFFFF !important;
-    stroke: #FFFFFF !important;
-}
-
-[data-testid="stRadio"],
-[data-testid="stRadio"] > div,
-[data-testid="stRadio"] [role="radiogroup"],
-[data-testid="stRadio"] label,
-[data-testid="stRadio"] label > div,
-[data-testid="stRadio"] label > div > div {
-    background: #000000 !important;
-    color: #FFFFFF !important;
-}
-
-[data-testid="stRadio"] [data-baseweb="radio"] > div:first-child {
-    background: #000000 !important;
-    border-color: #777777 !important;
-}
-
-[data-testid="stRadio"] [data-baseweb="radio"] svg {
-    fill: #FFFFFF !important;
-}
-
-/* ========================================================
-   INDUSTRY SELECTBOX: FORCE BLACK BACKGROUND
-   ======================================================== */
-
-/* Main selectbox wrapper */
-div[data-testid="stSelectbox"],
-div[data-testid="stSelectbox"] > div,
-div[data-testid="stSelectbox"] > div > div {
-    background-color: #000000 !important;
-    background: #000000 !important;
-    color: #FFFFFF !important;
-}
-
-/* BaseWeb select container */
-div[data-testid="stSelectbox"] div[data-baseweb="select"],
-div[data-testid="stSelectbox"] div[data-baseweb="select"] > div,
-div[data-testid="stSelectbox"] div[data-baseweb="select"] > div > div {
-    background-color: #000000 !important;
-    background: #000000 !important;
-    color: #FFFFFF !important;
-    border-color: #333333 !important;
-}
-
-/* Outer border */
-div[data-testid="stSelectbox"] div[data-baseweb="select"] {
-    border: 1px solid #333333 !important;
-    border-radius: 8px !important;
-}
-
-/* Selected industry text */
-div[data-testid="stSelectbox"] div[data-baseweb="select"] span,
-div[data-testid="stSelectbox"] div[data-baseweb="select"] input,
-div[data-testid="stSelectbox"] div[data-baseweb="select"] [data-baseweb="select-value"],
-div[data-testid="stSelectbox"] div[data-baseweb="select"] [data-baseweb="select-value"] * {
-    background-color: #000000 !important;
-    background: #000000 !important;
-    color: #FFFFFF !important;
-    -webkit-text-fill-color: #FFFFFF !important;
-}
-
-/* Right-side arrow box */
-div[data-testid="stSelectbox"] div[data-baseweb="select"] > div > div:last-child,
-div[data-testid="stSelectbox"] div[data-baseweb="select"] [role="button"],
-div[data-testid="stSelectbox"] div[data-baseweb="select"] [data-baseweb="icon"],
-div[data-testid="stSelectbox"] div[data-baseweb="select"] [aria-hidden="true"],
-div[data-testid="stSelectbox"] div[data-baseweb="select"] button {
-    background-color: #000000 !important;
-    background: #000000 !important;
-    color: #FFFFFF !important;
-}
-
-/* Chevron arrow */
-div[data-testid="stSelectbox"] div[data-baseweb="select"] svg,
-div[data-testid="stSelectbox"] div[data-baseweb="select"] svg *,
-div[data-testid="stSelectbox"] div[data-baseweb="select"] svg path,
-div[data-testid="stSelectbox"] div[data-baseweb="select"] svg polygon {
-    background-color: #000000 !important;
-    background: #000000 !important;
-    fill: #FFFFFF !important;
-    stroke: #FFFFFF !important;
-    color: #FFFFFF !important;
-}
-
-/* Keep it black while hovering, selecting or focusing */
-div[data-testid="stSelectbox"] div[data-baseweb="select"]:hover,
-div[data-testid="stSelectbox"] div[data-baseweb="select"]:focus,
-div[data-testid="stSelectbox"] div[data-baseweb="select"]:focus-within,
-div[data-testid="stSelectbox"] div[data-baseweb="select"] > div:hover,
-div[data-testid="stSelectbox"] div[data-baseweb="select"] > div:focus-within {
-    background-color: #000000 !important;
-    background: #000000 !important;
-    color: #FFFFFF !important;
-}
-
-/* Dropdown option menu, created by Streamlit in a separate page layer */
-[data-baseweb="popover"],
-[data-baseweb="popover"] *,
-[data-baseweb="layer"],
-[data-baseweb="layer"] *,
-[data-baseweb="menu"],
-[data-baseweb="menu"] *,
-ul[role="listbox"],
-ul[role="listbox"] *,
-li[role="option"],
-li[role="option"] *,
-div[role="listbox"],
-div[role="listbox"] * {
-    background: #121212 !important;
-    color: #FFFFFF !important;
-    border-color: #333333 !important;
-}
-
-li[role="option"]:hover,
-li[role="option"]:hover *,
-li[aria-selected="true"],
-li[aria-selected="true"] *,
-[role="option"][aria-selected="true"],
-[role="option"][aria-selected="true"] * {
-    background: #262626 !important;
-    color: #FFFFFF !important;
-}
-
-[data-baseweb="tab-list"] {
-    background: transparent !important;
-    border-bottom: 1px solid #222222 !important;
-}
-
-[data-baseweb="tab"] {
-    background: transparent !important;
-    color: #888888 !important;
-    font-weight: 600 !important;
-}
-
-[data-baseweb="tab"][aria-selected="true"] {
-    color: #FFFFFF !important;
-    border-bottom: 2px solid #FFFFFF !important;
-}
-
-[data-testid="stExpander"],
-[data-testid="stExpander"] details,
-[data-testid="stExpander"] summary,
-[data-testid="stExpander"] div {
-    background: #000000 !important;
-    color: #FFFFFF !important;
-    border-color: #333333 !important;
-}
-
-[data-testid="stExpander"] svg {
-    fill: #FFFFFF !important;
-    color: #FFFFFF !important;
-}
-
-[data-testid="stProgress"],
-[data-testid="stProgress"] > div {
-    background: #222222 !important;
-}
-
-[data-testid="stProgress"] > div > div > div {
-    background: #FFFFFF !important;
-}
-
-table, thead, tbody, tr, th, td {
-    background: #000000 !important;
-    color: #FFFFFF !important;
-    border-color: #333333 !important;
-}
-
-.result-approved {
-    background: #0B2014;
-    border: 1.5px solid #10B981;
-    border-radius: 12px;
-    padding: 20px 24px;
-    margin-top: 16px;
-}
-
-.result-rejected {
-    background: #250B0B;
-    border: 1.5px solid #EF4444;
-    border-radius: 12px;
-    padding: 20px 24px;
-    margin-top: 16px;
-}
-
-.badge-approved {
-    display: inline-block;
-    background: #10B981;
-    color: #000000 !important;
-    font-weight: 800;
-    font-size: 0.75rem;
-    padding: 3px 10px;
-    border-radius: 6px;
-    text-transform: uppercase;
-    margin-bottom: 6px;
-}
-
-.badge-rejected {
-    display: inline-block;
-    background: #EF4444;
-    color: #FFFFFF !important;
-    font-weight: 800;
-    font-size: 0.75rem;
-    padding: 3px 10px;
-    border-radius: 6px;
-    text-transform: uppercase;
-    margin-bottom: 6px;
-}
-
-.tag-pos {
-    display: inline-block;
-    background: rgba(16, 185, 129, 0.25);
-    color: #FFFFFF !important;
-    font-size: 0.85rem;
-    font-weight: 600;
-    padding: 4px 10px;
-    border-radius: 6px;
-    margin: 3px 4px 3px 0;
-    border: 1px solid #10B981;
-}
-
-.tag-neg {
-    display: inline-block;
-    background: rgba(239, 68, 68, 0.25);
-    color: #FFFFFF !important;
-    font-size: 0.85rem;
-    font-weight: 600;
-    padding: 4px 10px;
-    border-radius: 6px;
-    margin: 3px 4px 3px 0;
-    border: 1px solid #EF4444;
-}
-
-/* Force Industry selected text and arrow to white */
-div[data-testid="stSelectbox"] div[data-baseweb="select"] input,
-div[data-testid="stSelectbox"] div[data-baseweb="select"] input:focus,
-div[data-testid="stSelectbox"] div[data-baseweb="select"] span,
-div[data-testid="stSelectbox"] div[data-baseweb="select"] [data-baseweb="select-value"],
-div[data-testid="stSelectbox"] div[data-baseweb="select"] [data-baseweb="select-value"] * {
-    color: #FFFFFF !important;
-    -webkit-text-fill-color: #FFFFFF !important;
-    opacity: 1 !important;
-}
-
-div[data-testid="stSelectbox"] div[data-baseweb="select"] svg,
-div[data-testid="stSelectbox"] div[data-baseweb="select"] div[role="button"] svg,
-div[data-testid="stSelectbox"] div[data-baseweb="select"] svg * {
-    fill: #FFFFFF !important;
-    stroke: #FFFFFF !important;
-    color: #FFFFFF !important;
-    opacity: 1 !important;
-}
+    .result-card {
+        padding: 1.2rem;
+        border-radius: 12px;
+        border: 1px solid #E5E7EB;
+        background-color: #F9FAFB;
+        margin-top: 1rem;
+    }
 </style>
 """, unsafe_allow_html=True)
 
-
+# ---------------------------------------------------
+# Load saved model and preprocessor
+# ---------------------------------------------------
 @st.cache_resource
 def load_assets():
     preprocessor = joblib.load("credit_card_preprocessor.joblib")
     model = joblib.load("credit_card_approval_best_model.joblib")
     return preprocessor, model
 
-
 preprocessor, model = load_assets()
 
-
-def predict_approval(df_input):
-    X_proc = preprocessor.transform(df_input)
-    prediction = int(model.predict(X_proc)[0])
-
-    if hasattr(model, "predict_proba"):
-        proba = float(model.predict_proba(X_proc)[0][1])
-    elif hasattr(model, "decision_function"):
-        dval = float(model.decision_function(X_proc)[0])
-        proba = float(1.0 / (1.0 + np.exp(-dval)))
-    else:
-        proba = 1.0 if prediction == 1 else 0.0
-
-    return prediction, proba
-
-
-PRESETS = {
-    "Prime": {
-        "age": 34.0, "debt": 1.2, "married": 1, "bank_customer": 1,
-        "industry": "Financials", "years_employed": 5.5, "prior_default": 1,
-        "employed": 1, "credit_score": 7, "drivers_license": 1,
-        "citizen": "ByBirth", "income": 3500.0
-    },
-    "Borderline": {
-        "age": 28.0, "debt": 4.5, "married": 1, "bank_customer": 1,
-        "industry": "InformationTechnology", "years_employed": 2.0, "prior_default": 1,
-        "employed": 0, "credit_score": 1, "drivers_license": 1,
-        "citizen": "ByBirth", "income": 400.0
-    },
-    "High Risk": {
-        "age": 22.0, "debt": 6.8, "married": 0, "bank_customer": 0,
-        "industry": "Materials", "years_employed": 0.5, "prior_default": 0,
-        "employed": 0, "credit_score": 0, "drivers_license": 0,
-        "citizen": "ByBirth", "income": 0.0
-    }
-}
-
-for key, value in PRESETS["Prime"].items():
-    if f"val_{key}" not in st.session_state:
-        st.session_state[f"val_{key}"] = value
-
-
-def load_preset(name):
-    for key, value in PRESETS[name].items():
-        st.session_state[f"val_{key}"] = value
-
-
+# ---------------------------------------------------
+# Sidebar
+# ---------------------------------------------------
 with st.sidebar:
-    st.markdown("### 💳 Credit Predictor")
-    st.caption("Machine Learning Approval Engine")
-    st.divider()
-
-    st.markdown("**Quick Preset Profiles**")
-    c1, c2 = st.columns(2)
-    with c1:
-        if st.button("Prime Profile", use_container_width=True):
-            load_preset("Prime")
-            st.rerun()
-    with c2:
-        if st.button("High Risk", use_container_width=True):
-            load_preset("High Risk")
-            st.rerun()
-
-    if st.button("Borderline Profile", use_container_width=True):
-        load_preset("Borderline")
-        st.rerun()
-
+    st.title("💳 Project Information")
     st.divider()
 
     st.markdown("""
-**Model Summary**
-- **Classifier:** Support Vector Machine
-- **Accuracy:** 88.4%
-- **F1-Score:** 0.871
-""")
+    **Project:** Credit Card Approval Prediction  
+    **Learning type:** Supervised machine learning  
+    **Problem type:** Binary classification  
+    **Target:** `Approved`  
+    """)
 
     st.divider()
-    st.caption("Educational demonstration only. Not for real-world automated lending.")
 
+    st.subheader("Models Compared")
+    st.markdown("""
+    - Logistic Regression  
+    - K-Nearest Neighbours  
+    - Support Vector Machine  
+    - Artificial Neural Network  
+    """)
 
-st.title("💳 Credit Card Approval Predictor")
-st.caption("Estimate credit card application approval using trained machine learning classification.")
+    st.divider()
 
-m1, m2, m3 = st.columns(3)
-m1.metric("Selected Model", type(model).__name__)
-m2.metric("Benchmark Accuracy", "88.4%")
-m3.metric("Target Variable", "Approved (0 / 1)")
+    st.warning(
+        "Educational demonstration only. "
+        "Do not use this result as an automatic real-world lending decision."
+    )
+
+# ---------------------------------------------------
+# Main heading
+# ---------------------------------------------------
+st.markdown('<div class="app-title">💳 Credit Card Approval Predictor</div>', unsafe_allow_html=True)
+
+st.markdown(
+    '<div class="app-subtitle">'
+    'Enter applicant information to estimate whether the application is likely '
+    'to be approved or rejected based on the trained machine-learning model.'
+    '</div>',
+    unsafe_allow_html=True
+)
+
+# Show useful top summary
+metric_1, metric_2, metric_3 = st.columns(3)
+
+metric_1.metric(
+    "Prediction Type",
+    "Binary Classification"
+)
+
+metric_2.metric(
+    "Target Variable",
+    "Approved (0 / 1)"
+)
+
+metric_3.metric(
+    "Final Model",
+    type(model).__name__
+)
 
 st.divider()
 
-tab1, tab2 = st.tabs(["📝 Make Prediction", "ℹ️ About & Benchmarks"])
+# ---------------------------------------------------
+# Tabs
+# ---------------------------------------------------
+tab1, tab2 = st.tabs(["📝 Make Prediction", "ℹ️ About the Project"])
 
-
+# ---------------------------------------------------
+# Prediction tab
+# ---------------------------------------------------
 with tab1:
-    with st.form("approval_form"):
-        col_left, col_mid, col_right = st.columns(3)
+    st.subheader("Applicant Details")
+    st.caption("Complete the fields below, then select Predict Approval.")
 
-        with col_left:
-            st.markdown('<div class="card-title">👤 Personal Details</div>', unsafe_allow_html=True)
+    with st.form("credit_card_form"):
+
+        left_column, right_column = st.columns(2)
+
+        with left_column:
+            st.markdown("### Personal and Financial Details")
 
             age = st.number_input(
-                "Age", min_value=18.0, max_value=100.0,
-                value=float(st.session_state.get("val_age", 30.0)), step=1.0
-            )
-
-            married = st.radio(
-                "Married", options=[1, 0],
-                format_func=lambda x: "Yes" if x == 1 else "No",
-                horizontal=True,
-                index=0 if st.session_state.get("val_married", 1) == 1 else 1
-            )
-
-            citizen_options = ["ByBirth", "ByOtherMeans", "Temporary"]
-            saved_citizen = st.session_state.get("val_citizen", "ByBirth")
-            citizen = st.radio(
-                "Citizenship", options=citizen_options, horizontal=True,
-                index=citizen_options.index(saved_citizen) if saved_citizen in citizen_options else 0
-            )
-
-            drivers_license = st.radio(
-                "Driver's License", options=[1, 0],
-                format_func=lambda x: "Yes" if x == 1 else "No",
-                horizontal=True,
-                index=0 if st.session_state.get("val_drivers_license", 1) == 1 else 1
-            )
-
-        with col_mid:
-            st.markdown('<div class="card-title">💼 Employment Details</div>', unsafe_allow_html=True)
-
-            industry_options = [
-                "Financials", "InformationTechnology", "Industrials", "Healthcare",
-                "Energy", "Materials", "CommunicationServices", "Transport",
-                "Real Estate", "Utilities", "ConsumerDiscretionary", "Education",
-                "ConsumerStaples", "Research"
-            ]
-            saved_industry = st.session_state.get("val_industry", "Financials")
-            industry = st.selectbox(
-                "Industry",
-                options=industry_options,
-                index=industry_options.index(saved_industry) if saved_industry in industry_options else 0
-            )
-
-            employed = st.radio(
-                "Currently Employed", options=[1, 0],
-                format_func=lambda x: "Yes" if x == 1 else "No",
-                horizontal=True,
-                index=0 if st.session_state.get("val_employed", 1) == 1 else 1
-            )
-
-            years_employed = st.number_input(
-                "Years Employed", min_value=0.0, max_value=50.0,
-                value=float(st.session_state.get("val_years_employed", 3.0)), step=0.5
-            )
-
-            bank_customer = st.radio(
-                "Bank Customer", options=[1, 0],
-                format_func=lambda x: "Yes" if x == 1 else "No",
-                horizontal=True,
-                index=0 if st.session_state.get("val_bank_customer", 1) == 1 else 1
-            )
-
-        with col_right:
-            st.markdown('<div class="card-title">💰 Financial & Credit</div>', unsafe_allow_html=True)
-
-            income = st.number_input(
-                "Monthly Income ($)", min_value=0.0, max_value=100000.0,
-                value=float(st.session_state.get("val_income", 2500.0)), step=100.0
+                "Age",
+                min_value=0.0,
+                max_value=100.0,
+                value=30.0,
+                step=0.01,
+                help="Applicant age in years."
             )
 
             debt = st.number_input(
-                "Debt Score ($k)", min_value=0.0, max_value=50.0,
-                value=float(st.session_state.get("val_debt", 2.5)), step=0.25
+                "Debt",
+                min_value=0.0,
+                value=0.0,
+                step=0.01,
+                help="Debt value recorded in the dataset."
+            )
+
+            income = st.number_input(
+                "Income",
+                min_value=0.0,
+                value=0.0,
+                step=1.0,
+                help="Income value recorded in the dataset."
+            )
+
+            years_employed = st.number_input(
+                "Years Employed",
+                min_value=0.0,
+                value=1.0,
+                step=0.01,
+                help="Years of employment recorded in the dataset."
             )
 
             credit_score = st.number_input(
-                "Credit Score Index", min_value=0, max_value=70,
-                value=int(st.session_state.get("val_credit_score", 5)), step=1
+                "Credit Score",
+                min_value=0,
+                value=0,
+                step=1
             )
 
-            prior_default = st.radio(
-                "Credit History Standing", options=[1, 0],
-                format_func=lambda x: "Good / Clean History" if x == 1 else "Prior Default",
-                horizontal=False,
-                index=0 if st.session_state.get("val_prior_default", 1) == 1 else 1
+        with right_column:
+            st.markdown("### Applicant Profile")
+
+            married = st.selectbox(
+                "Married",
+                options=[0, 1],
+                format_func=lambda x: "Yes" if x == 1 else "No"
+            )
+
+            bank_customer = st.selectbox(
+                "Bank Customer",
+                options=[0, 1],
+                format_func=lambda x: "Yes" if x == 1 else "No"
+            )
+
+            prior_default = st.selectbox(
+                "Prior Default",
+                options=[0, 1],
+                format_func=lambda x: "Yes" if x == 1 else "No"
+            )
+
+            employed = st.selectbox(
+                "Currently Employed",
+                options=[0, 1],
+                format_func=lambda x: "Yes" if x == 1 else "No"
+            )
+
+            drivers_license = st.selectbox(
+                "Driver's License",
+                options=[0, 1],
+                format_func=lambda x: "Yes" if x == 1 else "No"
+            )
+
+            industry = st.selectbox(
+                "Industry",
+                options=[
+                    "Industrials",
+                    "Materials",
+                    "CommunicationServices",
+                    "Transport",
+                    "InformationTechnology",
+                    "Financials",
+                    "Energy",
+                    "Real Estate",
+                    "Utilities",
+                    "ConsumerDiscretionary",
+                    "Education",
+                    "Healthcare",
+                    "ConsumerStaples",
+                    "Research"
+                ]
+            )
+
+            citizen = st.selectbox(
+                "Citizen Status",
+                options=[
+                    "ByBirth",
+                    "ByOtherMeans",
+                    "Temporary"
+                ]
             )
 
         st.divider()
-        submitted = st.form_submit_button("🔍 Predict Approval Decision", use_container_width=True)
 
+        submitted = st.form_submit_button(
+            "🔍 Predict Approval Decision",
+            use_container_width=True
+        )
+
+    # Prediction result
     if submitted:
-        applicant = pd.DataFrame([{
-            "Age": float(age),
-            "Debt": float(debt),
-            "Married": int(married),
-            "BankCustomer": int(bank_customer),
-            "Industry": str(industry),
-            "YearsEmployed": float(years_employed),
-            "PriorDefault": int(prior_default),
-            "Employed": int(employed),
-            "CreditScore": int(credit_score),
-            "DriversLicense": int(drivers_license),
-            "Citizen": str(citizen),
-            "Income": float(income)
+        new_applicant = pd.DataFrame([{
+            "Age": age,
+            "Debt": debt,
+            "Married": married,
+            "BankCustomer": bank_customer,
+            "Industry": industry,
+            "YearsEmployed": years_employed,
+            "PriorDefault": prior_default,
+            "Employed": employed,
+            "CreditScore": credit_score,
+            "DriversLicense": drivers_license,
+            "Citizen": citizen,
+            "Income": income
         }])
 
-        pred, prob = predict_approval(applicant)
+        processed_applicant = preprocessor.transform(new_applicant)
+        prediction = model.predict(processed_applicant)[0]
 
-        st.markdown("### Prediction Result")
+        st.markdown('<div class="result-card">', unsafe_allow_html=True)
+        st.subheader("Prediction Result")
 
-        if pred == 1:
-            st.markdown(f"""
-<div class="result-approved">
-    <span class="badge-approved">APPROVED</span>
-    <h2 style="margin: 4px 0; color: #FFFFFF !important;">Likely to be Approved</h2>
-    <p style="margin: 0; color: #FFFFFF !important; font-size: 0.95rem;">
-        Approval confidence: <strong>{prob:.1%}</strong>
-    </p>
-</div>
-""", unsafe_allow_html=True)
+        if prediction == 1:
+            st.success("✅ Prediction: Application likely to be approved.")
         else:
-            st.markdown(f"""
-<div class="result-rejected">
-    <span class="badge-rejected">REJECTED</span>
-    <h2 style="margin: 4px 0; color: #FFFFFF !important;">Likely to be Rejected</h2>
-    <p style="margin: 0; color: #FFFFFF !important; font-size: 0.95rem;">
-        Approval confidence: <strong>{prob:.1%}</strong>
-    </p>
-</div>
-""", unsafe_allow_html=True)
+            st.error("❌ Prediction: Application likely to be rejected.")
 
-        res_col1, res_col2 = st.columns([1, 2])
-        with res_col1:
-            st.metric("Approval Probability", f"{prob:.1%}")
-        with res_col2:
-            st.progress(float(np.clip(prob, 0.0, 1.0)))
-
-        positive_factors = []
-        risk_factors = []
-
-        if prior_default == 1:
-            positive_factors.append("Clean credit history")
+        # Support probability display for all models
+        if hasattr(model, "predict_proba"):
+            probability = float(model.predict_proba(processed_applicant)[0][1])
+        elif hasattr(model, "decision_function"):
+            d_val = float(model.decision_function(processed_applicant)[0])
+            probability = float(1.0 / (1.0 + np.exp(-d_val)))
         else:
-            risk_factors.append("Prior default recorded")
+            probability = None
 
-        if credit_score >= 3:
-            positive_factors.append(f"Good credit score ({credit_score})")
-        elif credit_score == 0:
-            risk_factors.append("Zero credit score")
+        if probability is not None:
+            probability_column, label_column = st.columns([1, 2])
 
-        if income >= 1500:
-            positive_factors.append(f"Solid income (${income:,.0f})")
-        elif income < 300:
-            risk_factors.append("Low income")
+            with probability_column:
+                st.metric(
+                    "Approval Probability",
+                    f"{probability:.1%}"
+                )
 
-        if employed == 1:
-            positive_factors.append("Currently employed")
-        else:
-            risk_factors.append("Unemployed")
+            with label_column:
+                st.progress(float(probability))
+                st.caption(
+                    "This probability is a model estimate based on patterns "
+                    "in the training dataset."
+                )
 
-        d1, d2 = st.columns(2)
-        with d1:
-            st.markdown("**Positive Factors:**")
-            if positive_factors:
-                for factor in positive_factors:
-                    st.markdown(f'<span class="tag-pos">✓ {factor}</span>', unsafe_allow_html=True)
-            else:
-                st.caption("None")
-
-        with d2:
-            st.markdown("**Risk Factors:**")
-            if risk_factors:
-                for factor in risk_factors:
-                    st.markdown(f'<span class="tag-neg">✕ {factor}</span>', unsafe_allow_html=True)
-            else:
-                st.caption("None")
+        st.markdown("</div>", unsafe_allow_html=True)
 
         with st.expander("View submitted applicant data"):
-            st.table(applicant)
+            st.dataframe(
+                new_applicant,
+                use_container_width=True,
+                hide_index=True
+            )
 
-
+# ---------------------------------------------------
+# Information tab
+# ---------------------------------------------------
 with tab2:
-    st.subheader("Model Performance Comparison")
+    st.subheader("About This Application")
 
-    benchmarks = pd.DataFrame([
-        {"Model": "Support Vector Machine (Selected)", "Accuracy": "88.4%", "Precision": "85.7%", "Recall": "88.5%", "F1-Score": "0.871"},
-        {"Model": "Logistic Regression", "Accuracy": "87.0%", "Precision": "85.2%", "Recall": "85.2%", "F1-Score": "0.852"},
-        {"Model": "K-Nearest Neighbors", "Accuracy": "85.5%", "Precision": "88.7%", "Recall": "77.0%", "F1-Score": "0.825"},
-        {"Model": "Artificial Neural Network", "Accuracy": "84.1%", "Precision": "88.2%", "Recall": "73.8%", "F1-Score": "0.804"}
-    ])
+    info_left, info_right = st.columns(2)
 
-    st.table(benchmarks)
+    with info_left:
+        st.markdown("""
+        ### Objective
 
-    st.divider()
+        This application demonstrates supervised machine learning for predicting
+        whether a credit-card application is likely to be approved or rejected.
 
-    st.subheader("Data Preparation & Exclusions")
-    st.markdown("""
-- **Preprocessors:** `StandardScaler` for numerical columns and `OneHotEncoder` for categorical columns.
-- **Excluded column:** `ZipCode` was omitted to reduce location-based bias.
-- **Dataset target:** `Approved`, where 1 means approved and 0 means rejected.
-- **Note:** This is an academic prototype, not a real-world lending decision system.
-""")
+        The application uses applicant financial, employment, banking, and
+        application-related features as the model input.
+        """)
+
+        st.markdown("""
+        ### Prediction Labels
+
+        - `1` = Approved
+        - `0` = Rejected
+        """)
+
+    with info_right:
+        st.markdown("""
+        ### Data Preparation
+
+        - Data split into 80% training and 20% testing data
+        - Numerical variables standardised using `StandardScaler`
+        - Categorical variables transformed using `OneHotEncoder`
+        - Several classification models compared using Accuracy, Precision,
+          Recall, and F1-score
+        """)
+
+        st.markdown("""
+        ### Limitation
+
+        This is an academic prototype using a public dataset. It should not be
+        used as an automated real-world credit-decision system.
+        """)
+
+    with st.expander("Why are some columns excluded?"):
+        st.write(
+            "ZipCode was excluded from the model input because geographic "
+            "information may introduce location-based bias. The model also "
+            "does not use demographic variables such as gender or ethnicity."
+        )
