@@ -156,53 +156,78 @@ div[data-testid="stFormSubmitButton"] > button:hover {
     fill: #FFFFFF !important;
 }
 
-/* Selectbox: selected field and the right-arrow section */
+/* ========================================================
+   INDUSTRY SELECTBOX: FORCE BLACK BACKGROUND
+   ======================================================== */
+
+/* Main selectbox wrapper */
 div[data-testid="stSelectbox"],
 div[data-testid="stSelectbox"] > div,
+div[data-testid="stSelectbox"] > div > div {
+    background-color: #000000 !important;
+    background: #000000 !important;
+    color: #FFFFFF !important;
+}
+
+/* BaseWeb select container */
 div[data-testid="stSelectbox"] div[data-baseweb="select"],
 div[data-testid="stSelectbox"] div[data-baseweb="select"] > div,
-div[data-testid="stSelectbox"] div[data-baseweb="select"] > div > div,
-div[data-testid="stSelectbox"] div[data-baseweb="select"] > div > div:last-child,
-div[data-testid="stSelectbox"] div[data-baseweb="select"] [role="button"],
-div[data-testid="stSelectbox"] div[data-baseweb="select"] [data-baseweb="icon"],
-div[data-testid="stSelectbox"] div[data-baseweb="select"] [aria-hidden="true"],
-div[data-testid="stSelectbox"] div[data-baseweb="select"] button {
-    background: #000000 !important;
+div[data-testid="stSelectbox"] div[data-baseweb="select"] > div > div {
     background-color: #000000 !important;
+    background: #000000 !important;
     color: #FFFFFF !important;
     border-color: #333333 !important;
 }
 
+/* Outer border */
 div[data-testid="stSelectbox"] div[data-baseweb="select"] {
     border: 1px solid #333333 !important;
     border-radius: 8px !important;
 }
 
+/* Selected industry text */
+div[data-testid="stSelectbox"] div[data-baseweb="select"] span,
 div[data-testid="stSelectbox"] div[data-baseweb="select"] input,
-div[data-testid="stSelectbox"] div[data-baseweb="select"] input:focus {
-    background: #000000 !important;
+div[data-testid="stSelectbox"] div[data-baseweb="select"] [data-baseweb="select-value"],
+div[data-testid="stSelectbox"] div[data-baseweb="select"] [data-baseweb="select-value"] * {
     background-color: #000000 !important;
+    background: #000000 !important;
     color: #FFFFFF !important;
     -webkit-text-fill-color: #FFFFFF !important;
 }
 
+/* Right-side arrow box */
+div[data-testid="stSelectbox"] div[data-baseweb="select"] > div > div:last-child,
+div[data-testid="stSelectbox"] div[data-baseweb="select"] [role="button"],
+div[data-testid="stSelectbox"] div[data-baseweb="select"] [data-baseweb="icon"],
+div[data-testid="stSelectbox"] div[data-baseweb="select"] [aria-hidden="true"],
+div[data-testid="stSelectbox"] div[data-baseweb="select"] button {
+    background-color: #000000 !important;
+    background: #000000 !important;
+    color: #FFFFFF !important;
+}
+
+/* Chevron arrow */
 div[data-testid="stSelectbox"] div[data-baseweb="select"] svg,
 div[data-testid="stSelectbox"] div[data-baseweb="select"] svg *,
 div[data-testid="stSelectbox"] div[data-baseweb="select"] svg path,
 div[data-testid="stSelectbox"] div[data-baseweb="select"] svg polygon {
-    background: #000000 !important;
     background-color: #000000 !important;
+    background: #000000 !important;
     fill: #FFFFFF !important;
     stroke: #FFFFFF !important;
     color: #FFFFFF !important;
 }
 
+/* Keep it black while hovering, selecting or focusing */
 div[data-testid="stSelectbox"] div[data-baseweb="select"]:hover,
+div[data-testid="stSelectbox"] div[data-baseweb="select"]:focus,
 div[data-testid="stSelectbox"] div[data-baseweb="select"]:focus-within,
 div[data-testid="stSelectbox"] div[data-baseweb="select"] > div:hover,
 div[data-testid="stSelectbox"] div[data-baseweb="select"] > div:focus-within {
-    background: #000000 !important;
     background-color: #000000 !important;
+    background: #000000 !important;
+    color: #FFFFFF !important;
 }
 
 /* Dropdown option menu, created by Streamlit in a separate page layer */
