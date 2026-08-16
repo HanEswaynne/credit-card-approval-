@@ -14,12 +14,12 @@ st.set_page_config(
 )
 
 # ---------------------------------------------------
-# Dark / Black Theme Complete CSS
+# Complete Dark / Black Theme CSS
 # ---------------------------------------------------
 st.markdown("""
 <style>
-    /* Global Base */
-    .stApp {
+    /* Global Background & Base Text */
+    .stApp, [data-testid="stAppViewContainer"], [data-testid="stHeader"] {
         background-color: #000000 !important;
         color: #FFFFFF !important;
     }
@@ -30,7 +30,7 @@ st.markdown("""
         max-width: 1100px;
     }
 
-    /* All Text / Headings / Labels */
+    /* All Text / Headings / Labels to Pure White */
     h1, h2, h3, h4, h5, h6, p, span, label, div, strong, em, li, [class*="st-"] {
         color: #FFFFFF !important;
     }
@@ -77,7 +77,7 @@ st.markdown("""
     }
 
     /* Sidebar */
-    [data-testid="stSidebar"] {
+    [data-testid="stSidebar"], [data-testid="stSidebar"] > div:first-child {
         background-color: #05070A !important;
         border-right: 1px solid #1A202C !important;
     }
@@ -85,7 +85,7 @@ st.markdown("""
         color: #FFFFFF !important;
     }
 
-    /* Standard / Secondary Buttons (e.g. Presets in Sidebar) */
+    /* Standard Buttons (Sidebar Presets) */
     .stButton > button,
     button[kind="secondary"] {
         background-color: #161B22 !important;
@@ -123,7 +123,8 @@ st.markdown("""
     }
 
     /* Number Inputs & Stepper +/- Buttons */
-    [data-testid="stNumberInput"] div,
+    [data-testid="stNumberInput"],
+    [data-testid="stNumberInput"] > div,
     [data-testid="stNumberInput"] div[data-baseweb="input"],
     [data-testid="stNumberInput"] input {
         background-color: #0F1319 !important;
@@ -147,34 +148,66 @@ st.markdown("""
         stroke: #FFFFFF !important;
     }
 
-    /* Selectbox / Dropdowns */
-    [data-baseweb="select"] {
+    /* ========================================================
+       SELECTBOX (Industry, Citizenship, etc.) COMPLETE OVERRIDES
+       ======================================================== */
+    div[data-testid="stSelectbox"],
+    div[data-testid="stSelectbox"] > div,
+    div[data-testid="stSelectbox"] div[data-baseweb="select"],
+    div[data-testid="stSelectbox"] div[data-baseweb="select"] > div,
+    div[data-testid="stSelectbox"] div[data-baseweb="select"] > div > div,
+    div[data-testid="stSelectbox"] div[data-baseweb="select"] * {
         background-color: #0F1319 !important;
+        background: #0F1319 !important;
+        color: #FFFFFF !important;
+        border-color: #222834 !important;
+    }
+
+    div[data-testid="stSelectbox"] div[data-baseweb="select"] {
         border: 1px solid #222834 !important;
         border-radius: 8px !important;
     }
 
-    [data-baseweb="select"] * {
-        background-color: #0F1319 !important;
-        color: #FFFFFF !important;
-    }
-
-    [data-baseweb="select"] svg {
+    div[data-testid="stSelectbox"] svg,
+    div[data-testid="stSelectbox"] svg path {
         fill: #FFFFFF !important;
-    }
-
-    [data-baseweb="popover"], [data-baseweb="menu"] {
-        background-color: #0F1319 !important;
-        border: 1px solid #2D3748 !important;
-    }
-
-    [data-baseweb="menu"] li {
-        background-color: #0F1319 !important;
+        stroke: #FFFFFF !important;
         color: #FFFFFF !important;
     }
 
-    [data-baseweb="menu"] li:hover {
-        background-color: #1E293B !important;
+    /* Dropdown Popover & Options Menu */
+    div[data-baseweb="popover"],
+    div[data-baseweb="popover"] > div,
+    div[data-baseweb="popover"] ul,
+    ul[data-baseweb="menu"],
+    ul[role="listbox"] {
+        background-color: #0F1319 !important;
+        background: #0F1319 !important;
+        border: 1px solid #222834 !important;
+    }
+
+    li[data-baseweb="menu-item"],
+    li[role="option"],
+    ul[role="listbox"] li,
+    ul[data-baseweb="menu"] li {
+        background-color: #0F1319 !important;
+        background: #0F1319 !important;
+        color: #FFFFFF !important;
+    }
+
+    li[data-baseweb="menu-item"]:hover,
+    li[role="option"]:hover,
+    li[aria-selected="true"] {
+        background-color: #1E2633 !important;
+        background: #1E2633 !important;
+        color: #3B82F6 !important;
+    }
+
+    li[data-baseweb="menu-item"] *,
+    li[role="option"] * {
+        background-color: transparent !important;
+        background: transparent !important;
+        color: #FFFFFF !important;
     }
 
     /* Radio Buttons */
