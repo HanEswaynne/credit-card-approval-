@@ -277,28 +277,43 @@ with tab1:
 
         # Support probability display for all models
         if hasattr(model, "predict_proba"):
-            probability = float(model.predict_proba(processed_applicant)[0][1])
+            prob = float(model.predict_proba(processed_applicant)[0][1])
         elif hasattr(model, "decision_function"):
             d_val = float(model.decision_function(processed_applicant)[0])
-            probability = float(1.0 / (1.0 + np.exp(-d_val)))
+            prob = float(1.0 / (1.0 + np.exp(-d_val)))
         else:
-            probability = None
+            prob = float(prediction)
 
-        if probability is not None:
+        if prob is not None:
             probability_column, label_column = st.columns([1, 2])
 
             with probability_column:
                 st.metric(
                     "Approval Probability",
-                    f"{probability:.1%}"
+                    f"{prob:.1%}"
                 )
 
             with label_column:
-                st.progress(float(probability))
+                st.progress(float(np.clip(prob, 0.0, 1.0)))
                 st.caption(
                     "This probability is a model estimate based on patterns "
                     "in the training dataset."
                 )
+
+            st.markdown("##### Prediction Probability Breakdown")
+            probability_chart = pd.DataFrame({
+                "Decision": ["Rejected", "Approved"],
+                "Probability": [1.0 - prob, prob]
+            })
+
+            st.bar_chart(
+                probability_chart,
+                x="Decision",
+                y="Probability",
+                color="Decision",
+                horizontal=True,
+                height=220
+            )
 
         st.markdown("</div>", unsafe_allow_html=True)
 
