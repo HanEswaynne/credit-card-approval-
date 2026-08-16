@@ -156,6 +156,83 @@ div[data-testid="stFormSubmitButton"] > button:hover {
     fill: #FFFFFF !important;
 }
 
+/* Selectbox: selected field and the right-arrow section */
+div[data-testid="stSelectbox"],
+div[data-testid="stSelectbox"] > div,
+div[data-testid="stSelectbox"] div[data-baseweb="select"],
+div[data-testid="stSelectbox"] div[data-baseweb="select"] > div,
+div[data-testid="stSelectbox"] div[data-baseweb="select"] > div > div,
+div[data-testid="stSelectbox"] div[data-baseweb="select"] > div > div:last-child,
+div[data-testid="stSelectbox"] div[data-baseweb="select"] [role="button"],
+div[data-testid="stSelectbox"] div[data-baseweb="select"] [data-baseweb="icon"],
+div[data-testid="stSelectbox"] div[data-baseweb="select"] [aria-hidden="true"],
+div[data-testid="stSelectbox"] div[data-baseweb="select"] button {
+    background: #000000 !important;
+    background-color: #000000 !important;
+    color: #FFFFFF !important;
+    border-color: #333333 !important;
+}
+
+div[data-testid="stSelectbox"] div[data-baseweb="select"] {
+    border: 1px solid #333333 !important;
+    border-radius: 8px !important;
+}
+
+div[data-testid="stSelectbox"] div[data-baseweb="select"] input,
+div[data-testid="stSelectbox"] div[data-baseweb="select"] input:focus {
+    background: #000000 !important;
+    background-color: #000000 !important;
+    color: #FFFFFF !important;
+    -webkit-text-fill-color: #FFFFFF !important;
+}
+
+div[data-testid="stSelectbox"] div[data-baseweb="select"] svg,
+div[data-testid="stSelectbox"] div[data-baseweb="select"] svg *,
+div[data-testid="stSelectbox"] div[data-baseweb="select"] svg path,
+div[data-testid="stSelectbox"] div[data-baseweb="select"] svg polygon {
+    background: #000000 !important;
+    background-color: #000000 !important;
+    fill: #FFFFFF !important;
+    stroke: #FFFFFF !important;
+    color: #FFFFFF !important;
+}
+
+div[data-testid="stSelectbox"] div[data-baseweb="select"]:hover,
+div[data-testid="stSelectbox"] div[data-baseweb="select"]:focus-within,
+div[data-testid="stSelectbox"] div[data-baseweb="select"] > div:hover,
+div[data-testid="stSelectbox"] div[data-baseweb="select"] > div:focus-within {
+    background: #000000 !important;
+    background-color: #000000 !important;
+}
+
+/* Dropdown option menu, created by Streamlit in a separate page layer */
+[data-baseweb="popover"],
+[data-baseweb="popover"] *,
+[data-baseweb="layer"],
+[data-baseweb="layer"] *,
+[data-baseweb="menu"],
+[data-baseweb="menu"] *,
+ul[role="listbox"],
+ul[role="listbox"] *,
+li[role="option"],
+li[role="option"] *,
+div[role="listbox"],
+div[role="listbox"] * {
+    background: #121212 !important;
+    color: #FFFFFF !important;
+    border-color: #333333 !important;
+}
+
+li[role="option"]:hover,
+li[role="option"]:hover *,
+li[aria-selected="true"],
+li[aria-selected="true"] *,
+[role="option"][aria-selected="true"],
+[role="option"][aria-selected="true"] * {
+    background: #262626 !important;
+    color: #FFFFFF !important;
+}
+
 [data-baseweb="tab-list"] {
     background: transparent !important;
     border-bottom: 1px solid #222222 !important;
@@ -413,11 +490,10 @@ with tab1:
                 "ConsumerStaples", "Research"
             ]
             saved_industry = st.session_state.get("val_industry", "Financials")
-            industry = st.radio(
+            industry = st.selectbox(
                 "Industry",
                 options=industry_options,
-                index=industry_options.index(saved_industry) if saved_industry in industry_options else 0,
-                horizontal=False
+                index=industry_options.index(saved_industry) if saved_industry in industry_options else 0
             )
 
             employed = st.radio(
