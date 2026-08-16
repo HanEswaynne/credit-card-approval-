@@ -164,26 +164,14 @@ st.markdown("""
     }
 
     /* ========================================================
-       SELECTBOX (Industry) COMPLETE PURE BLACK OVERRIDES
+       SELECTBOX (Industry) PURE BLACK & CRISP WHITE ARROW
        ======================================================== */
     .stSelectbox,
-    .stSelectbox *,
     .stSelectbox div,
-    .stSelectbox span,
-    .stSelectbox [data-baseweb="select"],
-    .stSelectbox [data-baseweb="select"] > div,
-    .stSelectbox [data-baseweb="select"] > div > div,
     [data-testid="stSelectbox"],
-    [data-testid="stSelectbox"] *,
     [data-testid="stSelectbox"] > div,
     [data-testid="stSelectbox"] div[data-baseweb="select"],
-    [data-testid="stSelectbox"] div[data-baseweb="select"] > div,
-    [data-testid="stSelectbox"] div[data-baseweb="select"] > div > div,
-    [data-testid="stSelectbox"] div[data-baseweb="select"] [role="combobox"],
-    div[data-baseweb="select"],
-    div[data-baseweb="select"] *,
-    div[data-baseweb="select"] > div,
-    div[data-baseweb="select"] > div > div {
+    [data-testid="stSelectbox"] div[data-baseweb="select"] > div {
         background-color: #000000 !important;
         background: #000000 !important;
         color: #FFFFFF !important;
@@ -195,24 +183,27 @@ st.markdown("""
         border-radius: 8px !important;
     }
 
-    /* Selectbox Arrow SVG Icon & its Container Box */
+    /* Selectbox Dropdown Arrow Icon (Always Visible Crisp White) */
     [data-testid="stSelectbox"] svg,
     [data-testid="stSelectbox"] svg path,
     [data-baseweb="select"] svg,
-    [data-baseweb="select"] svg path {
+    [data-baseweb="select"] svg path,
+    [data-testid="stSelectbox"] [data-baseweb="icon"] svg {
         fill: #FFFFFF !important;
         stroke: #FFFFFF !important;
         color: #FFFFFF !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        display: block !important;
     }
 
-    [data-baseweb="select"] > div:last-child,
-    [data-baseweb="select"] div[aria-hidden="true"],
-    [data-baseweb="select"] span[aria-hidden="true"],
-    [data-baseweb="icon"],
-    [data-baseweb="icon"] * {
-        background-color: #000000 !important;
-        background: #000000 !important;
-        fill: #FFFFFF !important;
+    [data-baseweb="select"] [data-baseweb="icon"],
+    [data-baseweb="select"] > div:last-child {
+        background-color: transparent !important;
+        background: transparent !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
     }
 
     /* ========================================================
