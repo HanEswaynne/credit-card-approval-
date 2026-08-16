@@ -14,15 +14,15 @@ st.set_page_config(
 )
 
 # ---------------------------------------------------
-# Complete Dark / Black Theme CSS
+# Pure Neutral Black & White Theme (No Blue Tints)
 # ---------------------------------------------------
 st.markdown("""
 <style>
-    /* CSS Variables Override (Forces Streamlit & BaseWeb to Dark Mode) */
+    /* CSS Variables Override (Pure Black & Neutral Dark Gray) */
     :root, .stApp {
-        --primary-color: #2563EB !important;
+        --primary-color: #FFFFFF !important;
         --background-color: #000000 !important;
-        --secondary-background-color: #0F1319 !important;
+        --secondary-background-color: #121212 !important;
         --text-color: #FFFFFF !important;
     }
 
@@ -50,7 +50,7 @@ st.markdown("""
         font-weight: 700;
         color: #FFFFFF !important;
         margin-bottom: 12px;
-        border-bottom: 1px solid #262D3D;
+        border-bottom: 1px solid #222222;
         padding-bottom: 6px;
     }
 
@@ -65,7 +65,7 @@ st.markdown("""
 
     /* Subtitles and Captions */
     .stCaption, .stCaption p, .stCaption span {
-        color: #E2E8F0 !important;
+        color: #E0E0E0 !important;
     }
 
     /* Metric Cards */
@@ -82,13 +82,13 @@ st.markdown("""
 
     /* Dividers */
     hr {
-        border-color: #222834 !important;
+        border-color: #222222 !important;
     }
 
     /* Sidebar */
     [data-testid="stSidebar"], [data-testid="stSidebar"] > div:first-child {
-        background-color: #05070A !important;
-        border-right: 1px solid #1A202C !important;
+        background-color: #080808 !important;
+        border-right: 1px solid #1E1E1E !important;
     }
     [data-testid="stSidebar"] * {
         color: #FFFFFF !important;
@@ -97,9 +97,10 @@ st.markdown("""
     /* Standard Buttons (Sidebar Presets) */
     .stButton > button,
     button[kind="secondary"] {
-        background-color: #161B22 !important;
+        background-color: #161616 !important;
+        background: #161616 !important;
         color: #FFFFFF !important;
-        border: 1px solid #30363D !important;
+        border: 1px solid #333333 !important;
         border-radius: 8px !important;
         font-weight: 600 !important;
         padding: 8px 14px !important;
@@ -108,16 +109,18 @@ st.markdown("""
 
     .stButton > button:hover,
     button[kind="secondary"]:hover {
-        background-color: #21262D !important;
-        border-color: #8B949E !important;
+        background-color: #262626 !important;
+        background: #262626 !important;
+        border-color: #555555 !important;
         color: #FFFFFF !important;
     }
 
-    /* Primary Submit Button */
+    /* Primary Submit Button (Neutral Dark) */
     div[data-testid="stFormSubmitButton"] > button {
-        background: linear-gradient(135deg, #1E40AF 0%, #2563EB 100%) !important;
+        background-color: #1E1E1E !important;
+        background: #1E1E1E !important;
         color: #FFFFFF !important;
-        border: 1px solid #3B82F6 !important;
+        border: 1px solid #444444 !important;
         border-radius: 8px !important;
         font-weight: 700 !important;
         font-size: 1rem !important;
@@ -126,9 +129,9 @@ st.markdown("""
     }
 
     div[data-testid="stFormSubmitButton"] > button:hover {
-        background: linear-gradient(135deg, #1D4ED8 0%, #1E40AF 100%) !important;
-        border-color: #60A5FA !important;
-        box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35) !important;
+        background-color: #2C2C2C !important;
+        background: #2C2C2C !important;
+        border-color: #666666 !important;
     }
 
     /* Number Inputs & Stepper +/- Buttons */
@@ -136,20 +139,22 @@ st.markdown("""
     [data-testid="stNumberInput"] > div,
     [data-testid="stNumberInput"] div[data-baseweb="input"],
     [data-testid="stNumberInput"] input {
-        background-color: #0F1319 !important;
-        background: #0F1319 !important;
+        background-color: #121212 !important;
+        background: #121212 !important;
         color: #FFFFFF !important;
-        border-color: #222834 !important;
+        border-color: #2A2A2A !important;
     }
 
     [data-testid="stNumberInput"] button {
-        background-color: #1A202C !important;
+        background-color: #1A1A1A !important;
+        background: #1A1A1A !important;
         color: #FFFFFF !important;
-        border: 1px solid #2D3748 !important;
+        border: 1px solid #2A2A2A !important;
     }
 
     [data-testid="stNumberInput"] button:hover {
-        background-color: #2D3748 !important;
+        background-color: #2A2A2A !important;
+        background: #2A2A2A !important;
         color: #FFFFFF !important;
     }
 
@@ -159,7 +164,7 @@ st.markdown("""
     }
 
     /* ========================================================
-       SELECTBOX (Industry, Citizenship, etc.) BULLETPROOF DARK
+       SELECTBOX (Industry, Citizenship, etc.) NEUTRAL BLACK
        ======================================================== */
     .stSelectbox,
     .stSelectbox *,
@@ -179,14 +184,14 @@ st.markdown("""
     div[data-baseweb="select"] *,
     div[data-baseweb="select"] > div,
     div[data-baseweb="select"] > div > div {
-        background-color: #0F1319 !important;
-        background: #0F1319 !important;
+        background-color: #121212 !important;
+        background: #121212 !important;
         color: #FFFFFF !important;
-        border-color: #222834 !important;
+        border-color: #2A2A2A !important;
     }
 
     [data-testid="stSelectbox"] div[data-baseweb="select"] {
-        border: 1px solid #222834 !important;
+        border: 1px solid #2A2A2A !important;
         border-radius: 8px !important;
     }
 
@@ -209,26 +214,26 @@ st.markdown("""
     ul[data-baseweb="menu"] *,
     ul[role="listbox"],
     ul[role="listbox"] * {
-        background-color: #0F1319 !important;
-        background: #0F1319 !important;
-        border-color: #222834 !important;
+        background-color: #121212 !important;
+        background: #121212 !important;
+        border-color: #2A2A2A !important;
     }
 
     li[data-baseweb="menu-item"],
     li[role="option"],
     ul[role="listbox"] li,
     ul[data-baseweb="menu"] li {
-        background-color: #0F1319 !important;
-        background: #0F1319 !important;
+        background-color: #121212 !important;
+        background: #121212 !important;
         color: #FFFFFF !important;
     }
 
     li[data-baseweb="menu-item"]:hover,
     li[role="option"]:hover,
     li[aria-selected="true"] {
-        background-color: #1E2633 !important;
-        background: #1E2633 !important;
-        color: #3B82F6 !important;
+        background-color: #242424 !important;
+        background: #242424 !important;
+        color: #FFFFFF !important;
     }
 
     /* Radio Buttons */
@@ -239,18 +244,18 @@ st.markdown("""
     /* Tabs */
     [data-baseweb="tab-list"] {
         background-color: transparent !important;
-        border-bottom: 1px solid #222834 !important;
+        border-bottom: 1px solid #222222 !important;
     }
 
     [data-baseweb="tab"] {
         background-color: transparent !important;
-        color: #9CA3AF !important;
+        color: #888888 !important;
         font-weight: 600 !important;
     }
 
     [data-baseweb="tab"][aria-selected="true"] {
         color: #FFFFFF !important;
-        border-bottom: 2px solid #3B82F6 !important;
+        border-bottom: 2px solid #FFFFFF !important;
     }
 
     [data-baseweb="tab"]:hover {
@@ -259,7 +264,7 @@ st.markdown("""
 
     /* Result Banners */
     .result-approved {
-        background: #062E1E;
+        background: #0B2014;
         border: 1.5px solid #10B981;
         border-radius: 12px;
         padding: 20px 24px;
@@ -267,7 +272,7 @@ st.markdown("""
     }
 
     .result-rejected {
-        background: #360E0E;
+        background: #250B0B;
         border: 1.5px solid #EF4444;
         border-radius: 12px;
         padding: 20px 24px;
