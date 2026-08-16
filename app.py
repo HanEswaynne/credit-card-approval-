@@ -14,15 +14,15 @@ st.set_page_config(
 )
 
 # ---------------------------------------------------
-# Pure Neutral Black & White Theme (No Blue Tints)
+# Pure Black Theme CSS (All matching Currently Employed)
 # ---------------------------------------------------
 st.markdown("""
 <style>
-    /* CSS Variables Override (Pure Black & Neutral Dark Gray) */
+    /* CSS Variables */
     :root, .stApp {
         --primary-color: #FFFFFF !important;
         --background-color: #000000 !important;
-        --secondary-background-color: #121212 !important;
+        --secondary-background-color: #000000 !important;
         --text-color: #FFFFFF !important;
     }
 
@@ -65,7 +65,7 @@ st.markdown("""
 
     /* Subtitles and Captions */
     .stCaption, .stCaption p, .stCaption span {
-        color: #E0E0E0 !important;
+        color: #CCCCCC !important;
     }
 
     /* Metric Cards */
@@ -87,7 +87,7 @@ st.markdown("""
 
     /* Sidebar */
     [data-testid="stSidebar"], [data-testid="stSidebar"] > div:first-child {
-        background-color: #080808 !important;
+        background-color: #000000 !important;
         border-right: 1px solid #1E1E1E !important;
     }
     [data-testid="stSidebar"] * {
@@ -97,8 +97,8 @@ st.markdown("""
     /* Standard Buttons (Sidebar Presets) */
     .stButton > button,
     button[kind="secondary"] {
-        background-color: #161616 !important;
-        background: #161616 !important;
+        background-color: #000000 !important;
+        background: #000000 !important;
         color: #FFFFFF !important;
         border: 1px solid #333333 !important;
         border-radius: 8px !important;
@@ -109,16 +109,16 @@ st.markdown("""
 
     .stButton > button:hover,
     button[kind="secondary"]:hover {
-        background-color: #262626 !important;
-        background: #262626 !important;
+        background-color: #1A1A1A !important;
+        background: #1A1A1A !important;
         border-color: #555555 !important;
         color: #FFFFFF !important;
     }
 
-    /* Primary Submit Button (Neutral Dark) */
+    /* Primary Submit Button */
     div[data-testid="stFormSubmitButton"] > button {
-        background-color: #1E1E1E !important;
-        background: #1E1E1E !important;
+        background-color: #111111 !important;
+        background: #111111 !important;
         color: #FFFFFF !important;
         border: 1px solid #444444 !important;
         border-radius: 8px !important;
@@ -129,32 +129,32 @@ st.markdown("""
     }
 
     div[data-testid="stFormSubmitButton"] > button:hover {
-        background-color: #2C2C2C !important;
-        background: #2C2C2C !important;
+        background-color: #222222 !important;
+        background: #222222 !important;
         border-color: #666666 !important;
     }
 
-    /* Number Inputs & Stepper +/- Buttons */
+    /* Number Inputs & Steppers (Pure Black) */
     [data-testid="stNumberInput"],
     [data-testid="stNumberInput"] > div,
     [data-testid="stNumberInput"] div[data-baseweb="input"],
     [data-testid="stNumberInput"] input {
-        background-color: #121212 !important;
-        background: #121212 !important;
+        background-color: #000000 !important;
+        background: #000000 !important;
         color: #FFFFFF !important;
-        border-color: #2A2A2A !important;
+        border-color: #333333 !important;
     }
 
     [data-testid="stNumberInput"] button {
-        background-color: #1A1A1A !important;
-        background: #1A1A1A !important;
+        background-color: #000000 !important;
+        background: #000000 !important;
         color: #FFFFFF !important;
-        border: 1px solid #2A2A2A !important;
+        border: 1px solid #333333 !important;
     }
 
     [data-testid="stNumberInput"] button:hover {
-        background-color: #2A2A2A !important;
-        background: #2A2A2A !important;
+        background-color: #1A1A1A !important;
+        background: #1A1A1A !important;
         color: #FFFFFF !important;
     }
 
@@ -163,9 +163,7 @@ st.markdown("""
         stroke: #FFFFFF !important;
     }
 
-    /* ========================================================
-       SELECTBOX (Industry, Citizenship, etc.) NEUTRAL BLACK
-       ======================================================== */
+    /* Selectbox (Pure Black matching Currently Employed) */
     .stSelectbox,
     .stSelectbox *,
     .stSelectbox div,
@@ -184,18 +182,17 @@ st.markdown("""
     div[data-baseweb="select"] *,
     div[data-baseweb="select"] > div,
     div[data-baseweb="select"] > div > div {
-        background-color: #121212 !important;
-        background: #121212 !important;
+        background-color: #000000 !important;
+        background: #000000 !important;
         color: #FFFFFF !important;
-        border-color: #2A2A2A !important;
+        border-color: #333333 !important;
     }
 
     [data-testid="stSelectbox"] div[data-baseweb="select"] {
-        border: 1px solid #2A2A2A !important;
+        border: 1px solid #333333 !important;
         border-radius: 8px !important;
     }
 
-    /* Selectbox Arrow SVG Icon */
     [data-testid="stSelectbox"] svg,
     [data-testid="stSelectbox"] svg path,
     [data-baseweb="select"] svg,
@@ -214,25 +211,25 @@ st.markdown("""
     ul[data-baseweb="menu"] *,
     ul[role="listbox"],
     ul[role="listbox"] * {
-        background-color: #121212 !important;
-        background: #121212 !important;
-        border-color: #2A2A2A !important;
+        background-color: #000000 !important;
+        background: #000000 !important;
+        border-color: #333333 !important;
     }
 
     li[data-baseweb="menu-item"],
     li[role="option"],
     ul[role="listbox"] li,
     ul[data-baseweb="menu"] li {
-        background-color: #121212 !important;
-        background: #121212 !important;
+        background-color: #000000 !important;
+        background: #000000 !important;
         color: #FFFFFF !important;
     }
 
     li[data-baseweb="menu-item"]:hover,
     li[role="option"]:hover,
     li[aria-selected="true"] {
-        background-color: #242424 !important;
-        background: #242424 !important;
+        background-color: #1A1A1A !important;
+        background: #1A1A1A !important;
         color: #FFFFFF !important;
     }
 
@@ -474,9 +471,10 @@ with tab1:
                 index=0 if st.session_state.get("val_married", 1) == 1 else 1
             )
 
-            citizen = st.selectbox(
+            citizen = st.radio(
                 "Citizenship",
                 options=["ByBirth", "ByOtherMeans", "Temporary"],
+                horizontal=True,
                 index=["ByBirth", "ByOtherMeans", "Temporary"].index(
                     st.session_state.get("val_citizen", "ByBirth")
                 )
